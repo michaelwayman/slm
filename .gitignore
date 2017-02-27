@@ -1,4 +1,10 @@
-.idea
-*.pyc
 .DS_Store
 
+.idea/
+node_modules/
+
+*.pyc
+
+*.css
+*.css.map
+app.bundle.js
