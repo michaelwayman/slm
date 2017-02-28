@@ -1,0 +1,58 @@
+$pageHeight: 800px;
+
+#landingPage {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+
+  >.content {
+    font-size: 1em;
+    left: 50%;
+    position: absolute;
+    top: 200px;
+    transform: translate3d(-10%, 0, 0);
+    z-index: 2;
+
+    .title {
+      color: white;
+      font-family: "Arial Black";
+      font-size: 3em;
+    }
+
+    .description {
+      color: #4C4B4D;
+      mix-blend-mode: difference;
+      font-size: 1.1em;
+      text-align: center;
+      line-height: 1.2em;
+      top: 120px;
+      width: 500px;
+    }
+  }
+}
+
+
+#registerButton {
+  position: absolute;
+  right: 100px;
+  bottom: 100px;
+  z-index: 3;
+  //transform: translate3d(0, -50%, 0);
+
+  a {
+    color: white;
+    font-size: 1.1em;
+    text-decoration: none;
+    vertical-align: middle;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 16px;
+    transition: all .4s;
+
+    &:hover {
+      color: pink;
+      border: 2px solid pink;
+    }
+  }
+}

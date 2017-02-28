@@ -1,4 +1,12 @@
-.idea
-*.pyc
 .DS_Store
 slm_django/db.sqlite3
+
+.idea/
+node_modules/
+
+*.pyc
+
+*.css
+*.css.map
+app.bundle.js
+app.bundle.js.map
