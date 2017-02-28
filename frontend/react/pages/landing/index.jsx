@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import BGImage from '../../components/bgimage/index.jsx';
+import Modal from '../../components/modal/index.jsx';
 
 
 require('./styles.scss');
@@ -9,45 +9,33 @@ require('./styles.scss');
 
 class LandingPage extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {showRegister: false};
+        this.handleRegisterClick = this.handleRegisterClick.bind(this);
+    }
+
+    handleRegisterClick(e) {
+        e.preventDefault();
+        this.setState({showRegister: !this.state.showRegister});
+    }
+
     render() {
         return (
-            <section id="aboutPage">
+            <section id="landingPage">
 
-                <ReactCSSTransitionGroup transitionName="bg"
-                                         transitionEnter={false}
-                                         transitionLeave={false}
-                                         transitionAppear={true}
-                                         transitionAppearTimeout={2500}>
-                    <BGImage imgUrl={'images/landing2.png'} parallax={true} zIndex={2}/>
-                </ReactCSSTransitionGroup>
+                <BGImage imgUrl={'images/landing.jpg'} parallax={true}/>
                 <div className="content">
-                    <ReactCSSTransitionGroup transitionName="title"
-                                             transitionEnter={false}
-                                             transitionLeave={false}
-                                             transitionAppear={true}
-                                             transitionAppearTimeout={2500}>
-                        <h1 className="title">software engineer</h1>
-                    </ReactCSSTransitionGroup>
-                    <ReactCSSTransitionGroup transitionName="description"
-                                             transitionEnter={false}
-                                             transitionLeave={false}
-                                             transitionAppear={true}
-                                             transitionAppearTimeout={2500}>
-                        <p className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </ReactCSSTransitionGroup>
+                        <h1 className="title">Software License Management. Easy.</h1>
+                        {/*<p className="description">*/}
+                            {/*Lorem ipsum dolor sit amet, consectetur adipiscing elit,*/}
+                            {/*sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.*/}
+                            {/*Ut enim ad minim veniam, quis nostrud exercitation ullamco*/}
+                            {/*laboris nisi ut aliquip ex ea commodo consequat.*/}
+                        {/*</p>*/}
                 </div>
-                <ReactCSSTransitionGroup transitionName="circle"
-                                         transitionEnter={false}
-                                         transitionLeave={false}
-                                         transitionAppear={true}
-                                         transitionAppearTimeout={3000}>
-                    <div><div className="circle"></div></div>
-                </ReactCSSTransitionGroup>
+                <div id="registerButton"><a href="#register" onClick={this.handleRegisterClick}>register</a></div>
+                {this.state.showRegister && <Modal close={this.handleRegisterClick}/>}
             </section>
         )
     }

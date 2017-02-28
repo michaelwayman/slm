@@ -1,0 +1,41 @@
+#dashboardPage {
+  display: inline-block;
+  width: 100%;
+
+  > section {
+    margin-left: 250px;
+  }
+}
+
+nav {
+  background-color: #17074A;
+  height: 100vh;
+  position: fixed;
+  width: 250px;
+
+  .heading {
+    height: 200px;
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      padding-bottom: 20px;
+      padding-top: 20px;
+      width: 100%;
+
+      &.active {
+        background-color: #0081A7;
+      }
+
+      a {
+        color: white;
+        font-size: 1.5em;
+        font-weight: 100;
+        margin-left: 32px;
+        text-decoration: none;
+      }
+    }
+  }
+}
