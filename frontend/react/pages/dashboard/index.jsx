@@ -12,50 +12,67 @@ class DashboardPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: <OverviewPage/>
+            page: '#overview'
         };
-
-        this.handleNavClick = this.handleNavClick.bind(this);
+        this.handleMenuItemClick = this.handleMenuItemClick.bind(this);
     }
 
-    handleNavClick(e) {
-        e.preventDefault();
-
-        const target = e.currentTarget.getAttribute('href');
-        switch (target) {
+    getPage(page) {
+        switch (page) {
             case '#overview':
-                this.setState({page: <OverviewPage/>});
+                return <OverviewPage/>;
                 break;
             case '#licenses':
-                this.setState({page: <LicensesPage/>});
+                return <LicensesPage/>;
                 break;
             case '#groups':
-                this.setState({page: <OverviewPage/>});
+                return <OverviewPage/>;
                 break;
             case '#users':
-                this.setState({page: <OverviewPage/>});
+                return <OverviewPage/>;
                 break;
             case '#account':
-                this.setState({page: <AccountPage/>});
+                return <AccountPage/>;
                 break;
         }
     }
 
+    handleMenuItemClick(e) {
+        e.preventDefault();
+        const target = e.currentTarget.getAttribute('href');
+        this.setState({page: target});
+    }
+
+    buildMenuItems() {
+        const menuItems = [
+            {name: 'Overview', href: '#overview'},
+            {name: 'Licenses', href: '#licenses'},
+            {name: 'Groups', href: '#groups'},
+            {name: 'Users', href: '#users'},
+            {name: 'Account', href: '#account'},
+        ];
+
+        return menuItems.map((item) => {
+            return (
+                <li className={this.state.page == item.href && 'active'}>
+                    <a href={item.href} onClick={this.handleMenuItemClick}>{item.name}</a>
+                </li>
+            )
+        })
+    }
+
     render() {
+
         return (
             <section id="dashboardPage">
                 <nav>
                     <div className="heading"></div>
                     <ul>
-                        <li className="active"><a href="#overview" onClick={this.handleNavClick}>Overview</a></li>
-                        <li><a href="#licenses" onClick={this.handleNavClick}>Licenses</a></li>
-                        <li><a href="#groups" onClick={this.handleNavClick}>Groups</a></li>
-                        <li><a href="#users" onClick={this.handleNavClick}>Users</a></li>
-                        <li><a href="#account" onClick={this.handleNavClick}>Account</a></li>
+                        {this.buildMenuItems()}
                     </ul>
                 </nav>
                 <section>
-                    {this.state.page}
+                    {this.getPage(this.state.page)}
                 </section>
             </section>
         )

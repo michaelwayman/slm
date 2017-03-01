@@ -8,7 +8,7 @@ class BGImage extends React.Component {
 
     render() {
         const style = {
-            backgroundImage: `url("${this.props.imgUrl}")`,
+            // backgroundImage: `url("${this.props.imgUrl}")`,
             zIndex: this.props.zIndex || -1
         };
 

@@ -1,58 +1,72 @@
 $pageHeight: 800px;
 
 #landingPage {
-  height: 100vh;
-  overflow: hidden;
   position: relative;
-  width: 100vw;
+  width: 100%;
 
   >.content {
+    height: 700px;
     font-size: 1em;
-    left: 50%;
-    position: absolute;
-    top: 200px;
-    transform: translate3d(-10%, 0, 0);
-    z-index: 2;
+    position: relative;
 
     .title {
       color: white;
       font-family: "Arial Black";
-      font-size: 3em;
+      padding-top: 50px;
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+
+      h1 {
+        font-size: 3em;
+        width: 100%;
+      }
     }
 
-    .description {
-      color: #4C4B4D;
-      mix-blend-mode: difference;
-      font-size: 1.1em;
-      text-align: center;
-      line-height: 1.2em;
-      top: 120px;
-      width: 500px;
-    }
+    //.description {
+    //  color: #4C4B4D;
+    //  mix-blend-mode: difference;
+    //  font-size: 1.1em;
+    //  text-align: center;
+    //  line-height: 1.2em;
+    //  top: 120px;
+    //  width: 500px;
+    //}
   }
 }
 
 
 #registerButton {
   position: absolute;
-  right: 100px;
-  bottom: 100px;
-  z-index: 3;
-  //transform: translate3d(0, -50%, 0);
+  left: 50%;
+  top: 50%;
+  //bottom: 100px;
+  //z-index: 3;
+  width: 200px;
+  height: 200px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate3d(-50%, 0, 0);
+  transition: all .5s;
+
+  &:hover {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
 
   a {
     color: white;
-    font-size: 1.1em;
+    font-size: 1.5em;
     text-decoration: none;
-    vertical-align: middle;
-    border-radius: 10px;
-    border: 2px solid white;
-    padding: 16px;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
     transition: all .4s;
 
     &:hover {
-      color: pink;
-      border: 2px solid pink;
+      //font-size: 2em;
     }
   }
 }
