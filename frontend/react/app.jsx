@@ -32,9 +32,9 @@ class App extends React.Component {
     render() {
         return (
             <div id="app">
-                {/*<Navigation onLinkClick={this.handleLinkClick}/>*/}
-                {/*<LandingPage/>*/}
-                <DashboardPage/>
+                <Navigation onLinkClick={this.handleLinkClick}/>
+                <LandingPage/>
+                {/*<DashboardPage/>*/}
             </div>
         )
     }
