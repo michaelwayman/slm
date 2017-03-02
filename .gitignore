@@ -1,5 +1,5 @@
 .DS_Store
-slm_django/db.sqlite3
+backend/slm/db.sqlite3
 
 .idea/
 node_modules/

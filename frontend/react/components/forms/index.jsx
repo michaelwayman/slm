@@ -50,7 +50,6 @@ export class RegistrationForm extends React.Component {
             });
         }
 
-
         event.preventDefault();
     }
 

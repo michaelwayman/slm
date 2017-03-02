@@ -49,16 +49,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pricetier',
             name='solution',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='license.Solution'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Solution'),
         ),
         migrations.AddField(
             model_name='license',
             name='organization',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='license.Organization'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Organization'),
         ),
         migrations.AddField(
             model_name='license',
             name='solution',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='license.Solution'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Solution'),
         ),
     ]
