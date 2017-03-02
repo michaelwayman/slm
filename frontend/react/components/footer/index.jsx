@@ -2,7 +2,7 @@ import React from 'react';
 
 require('./styles.scss');
 
-class Footer extends React.Component {
+export class Footer extends React.Component {
     render() {
         return (
             <footer>
@@ -10,5 +10,3 @@ class Footer extends React.Component {
         )
     }
 }
-
-export default Footer

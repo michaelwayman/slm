@@ -4,7 +4,7 @@ import React from 'react';
 
 require('./styles.scss');
 
-class BGImage extends React.Component {
+export class BGImage extends React.Component {
 
     render() {
         const style = {
@@ -16,5 +16,3 @@ class BGImage extends React.Component {
         return <div className="bgImg" id={this.props.id} style={style}></div>
     }
 }
-
-export default BGImage

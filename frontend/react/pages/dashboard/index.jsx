@@ -1,13 +1,13 @@
 import React from 'react';
 
-import AccountPage from './account/index.jsx';
-import OverviewPage from './overview/index.jsx';
-import LicensesPage from './licenses/index.jsx';
+import {AccountPage} from './account/index.jsx';
+import {OverviewPage} from './overview/index.jsx';
+import {LicensesPage} from './licenses/index.jsx';
 
 require('./styles.scss');
 
 
-class DashboardPage extends React.Component {
+export class DashboardPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -52,9 +52,9 @@ class DashboardPage extends React.Component {
             {name: 'Account', href: '#account'},
         ];
 
-        return menuItems.map((item) => {
+        return menuItems.map((item, index) => {
             return (
-                <li className={this.state.page == item.href && 'active'}>
+                <li key={index} className={this.state.page == item.href && 'active'}>
                     <a href={item.href} onClick={this.handleMenuItemClick}>{item.name}</a>
                 </li>
             )
@@ -78,5 +78,3 @@ class DashboardPage extends React.Component {
         )
     }
 }
-
-export default DashboardPage

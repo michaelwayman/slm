@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BGImage from '../../components/bgimage/index.jsx';
-import Modal from '../../components/modal/index.jsx';
-import Footer from '../../components/footer/index.jsx';
+import {BGImage} from '../../components/bgimage/index.jsx';
+import {RegistrationModal} from '../../components/modal/index.jsx';
+import {Footer} from '../../components/footer/index.jsx';
 
 require('./styles.scss');
 
 
-class LandingPage extends React.Component {
+export class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -35,11 +35,9 @@ class LandingPage extends React.Component {
                         {/*</p>*/}
                         <div id="registerButton"><a href="#register" onClick={this.handleRegisterClick}>register</a></div>
                 </div>
-                {this.state.showRegister && <Modal close={this.handleRegisterClick}/>}
+                {this.state.showRegister && <RegistrationModal close={this.handleRegisterClick}/>}
                 <Footer/>
             </section>
         )
     }
 }
-
-export default LandingPage

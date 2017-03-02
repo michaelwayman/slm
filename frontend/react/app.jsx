@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import LandingPage from "./pages/landing/index.jsx";
-import DashboardPage from "./pages/dashboard/index.jsx";
+import {LandingPage} from "./pages/landing/index.jsx";
+import {DashboardPage} from "./pages/dashboard/index.jsx";
 import Navigation from "./components/navigation/index.jsx";
 
 require('./pages/styles/styles.scss');
@@ -32,8 +32,8 @@ class App extends React.Component {
         return (
             <div id="app">
                 {/*<Navigation onLinkClick={this.handleLinkClick}/>*/}
-                {/*<LandingPage/>*/}
-                <DashboardPage/>
+                <LandingPage/>
+                {/*<DashboardPage/>*/}
             </div>
         )
     }

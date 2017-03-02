@@ -3,7 +3,7 @@ import React from 'react';
 // require('./styles.scss');
 
 
-class DashboardPage extends React.Component {
+export class OverviewPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,5 +18,3 @@ class DashboardPage extends React.Component {
         )
     }
 }
-
-export default DashboardPage

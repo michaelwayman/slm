@@ -3,7 +3,7 @@ import React from 'react';
 // require('./styles.scss');
 
 
-class AccountPage extends React.Component {
+export class AccountPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,5 +18,3 @@ class AccountPage extends React.Component {
         )
     }
 }
-
-export default AccountPage

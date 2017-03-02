@@ -3,7 +3,7 @@ import React from 'react';
 // require('./styles.scss');
 
 
-class LicensesPage extends React.Component {
+export class LicensesPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,5 +18,3 @@ class LicensesPage extends React.Component {
         )
     }
 }
-
-export default LicensesPage
