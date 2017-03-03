@@ -25,5 +25,13 @@ var webpack = require('webpack');
      stats: {
          colors: true
      },
+     devServer: {
+         proxy: {
+             '/api/**': {
+                 target: 'http://localhost:8000/',
+                 secure: false
+             }
+         }
+     },
      devtool: 'source-map'
  };

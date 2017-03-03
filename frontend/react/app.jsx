@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
-import $ from 'jquery';
-
-import {LandingPage} from "./pages/landing/index.jsx";
-import {DashboardPage} from "./pages/dashboard/index.jsx";
+import {LandingPage} from './pages/landing/index.jsx';
+import {DashboardPage} from './pages/dashboard/index.jsx';
 import Navigation from "./components/navigation/index.jsx";
+
+import auth from './managers/auth.jsx';
 
 require('./pages/styles/styles.scss');
 
@@ -14,7 +15,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.handleLinkClick = this.handleLinkClick.bind(this);
-        this.state = {loggedIn: false}
+        this.state = {};
     }
 
     handleLinkClick(event) {
@@ -30,29 +31,29 @@ class App extends React.Component {
         }
     }
 
-    componentWillMount() {
-
-        const token = '';
-
-        if (token) {
-            $.get({
-                url: `/api/tokens/${token}`
-            })
-        }
+    componentDidMount() {
+        console.log(auth.loggedIn())
     }
 
     render() {
         return (
-            <div id="app">
-                {/*<Navigation onLinkClick={this.handleLinkClick}/>*/}
-                {this.state.loggedIn ? <DashboardPage/> : <LandingPage/>}
-            </div>
+            <Router history={browserHistory}>
+                <div>sdfdsfds</div>
+                {/*<div id="app">*/}
+                    <Route path='/' component={LandingPage} />
+                    <Route path='/dashboard/' component={DashboardPage} onEnter={auth.requireAuth} />
+                {/*// </div>*/}
+            </Router>
         )
     }
 }
 
-const app = <App/>;
 ReactDOM.render(
-  app,
+    <Router history={browserHistory}>
+        <Route path='/' component={LandingPage}>
+            <Route path='dashboard' component={DashboardPage}/>
+        </Route>
+        {/*<Route path='*' component={NoMatch}/>*/}
+  </Router>,
   document.getElementById('reactEntry')
 );

@@ -26,7 +26,7 @@ router.register(r'organizations', OrganizationViewSet)
 
 
 urlpatterns = [
-    url(r'^obtain-auth-token/$', obtain_auth_token),
+    url(r'^api/obtain-auth-token/$', obtain_auth_token),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls))
 ]
