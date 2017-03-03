@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import {LandingPage} from './pages/landing/index.jsx';
 import {DashboardPage} from './pages/dashboard/index.jsx';
@@ -14,21 +14,8 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleLinkClick = this.handleLinkClick.bind(this);
         this.state = {};
-    }
-
-    handleLinkClick(event) {
-        let url = event.currentTarget.getAttribute('href');
-
-        switch(url) {
-            case '#':
-                event.preventDefault();
-                this.setState({});
-                break;
-            default:
-                break;
-        }
+        // console.log(IndexRoute)
     }
 
     componentDidMount() {
@@ -37,21 +24,18 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router history={browserHistory}>
-                <div>sdfdsfds</div>
-                {/*<div id="app">*/}
-                    <Route path='/' component={LandingPage} />
-                    <Route path='/dashboard/' component={DashboardPage} onEnter={auth.requireAuth} />
-                {/*// </div>*/}
-            </Router>
+            <div id="app">
+                { this.props.children }
+            </div>
         )
     }
 }
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route path='/' component={LandingPage}>
-            <Route path='dashboard' component={DashboardPage}/>
+    <Router history={hashHistory}>
+        <Route path='/' component={App}>
+            <IndexRoute component={LandingPage}/>
+            <Route path='/dashboard' component={DashboardPage}/>
         </Route>
         {/*<Route path='*' component={NoMatch}/>*/}
   </Router>,
