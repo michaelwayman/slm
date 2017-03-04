@@ -10,10 +10,6 @@
   }
 
   h1 {
-    font-size: 64px;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
     margin-bottom: 16px;
   }
 
@@ -21,6 +17,11 @@
     color: rgba(255, 255, 255, .7);
     line-height: 30px;
     font-size: 20px;
+  }
+
+  form {
+    float: right;
+    max-width: 340px;
   }
 }
 

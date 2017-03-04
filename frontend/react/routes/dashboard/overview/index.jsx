@@ -13,8 +13,10 @@ export class OverviewPage extends React.Component {
     render() {
         return (
             <section id="overviewPage">
-                <h1>Overview</h1>
+                <h1>Dashboard</h1>
             </section>
         )
     }
 }
+
+export default OverviewPage

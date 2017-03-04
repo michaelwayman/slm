@@ -1,0 +1,49 @@
+#loginPage {
+  height: 100vh;
+  background-color: #f9f9f9;
+
+  .boxContainer {
+    background-color: white;
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+    margin: 16px auto;
+    padding: 16px;
+    width: 340px;
+  }
+
+  .login {
+    input {
+      border: 1px solid #d1d5da;
+      border-radius: 3px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: none;
+      margin-top: 20px;
+    }
+  }
+
+  .createAccount {
+    text-align: center;
+
+    a {
+      color: #0081A7;
+      text-decoration: none;
+    }
+
+    span {
+      font-size: 14px;
+      margin: 0 auto;
+      text-align: center;
+      width: inherit;
+    }
+  }
+
+  h3 {
+    padding-bottom: 24px;
+    padding-top: 170px;
+    text-align: center;
+  }
+}

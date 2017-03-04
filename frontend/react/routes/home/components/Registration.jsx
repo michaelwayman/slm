@@ -1,15 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
 
-import './styles.scss';
-
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
-            repeat: '',
+            again: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -51,9 +49,9 @@ class RegistrationForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input className="inputControl" type="email" placeholder="Email" name="email" onChange={this.handleInputChange}/>
-                <input className="inputControl" type="password" placeholder="Password" name="password" onChange={this.handleInputChange}/>
-                <input className="inputControl" type="password" placeholder="Repeat" name="repeat" onChange={this.handleInputChange}/>
+                <input className="inputControl" type="email" placeholder="email" name="email" onChange={this.handleInputChange}/>
+                <input className="inputControl" type="password" placeholder="password" name="password" onChange={this.handleInputChange}/>
+                <input className="inputControl" type="password" placeholder="again" name="again" onChange={this.handleInputChange}/>
                 <button className="btn" type="submit">Sign up for SLM</button>
             </form>
         );

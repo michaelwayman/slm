@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import HomePage from './routes/home/index.jsx';
-import {DashboardPage} from './routes/dashboard/index.jsx';
+import Dashboard from './routes/dashboard/index.jsx';
 import LoginPage from './routes/login/index.jsx';
 
 import Navigation from "./routes/components/navigation/index.jsx";
@@ -20,7 +20,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        console.log(auth.loggedIn())
     }
 
     render() {
@@ -36,7 +35,13 @@ ReactDOM.render(
     <Router history={hashHistory}>
         <Route path='/' component={App}>
             <IndexRoute component={HomePage}/>
-            <Route path='/dashboard' component={DashboardPage} onEnter={auth.requireAuth}/>
+            <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={auth.requireAuth}>
+                <IndexRoute component={Dashboard.OverviewPage}/>
+                <Route path='/dashboard/licenses' component={Dashboard.LicensesPage} />
+                <Route path='/dashboard/account' component={Dashboard.AccountPage} />
+                <Route path='/dashboard/users' component={Dashboard.UsersPage} />
+                <Route path='/dashboard/groups' component={Dashboard.GroupsPage} />
+            </Route>
             <Route path='/login' component={LoginPage} />
         </Route>
         {/*<Route path='*' component={NoMatch}/>*/}

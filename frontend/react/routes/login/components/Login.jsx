@@ -1,19 +1,13 @@
 import React from 'react'
-import auth from '../../../../managers/auth.jsx';
+import auth from '../../../managers/auth.jsx';
 
 class Form extends React.Component {
     render() {
         return (
             <form className="form inline" onSubmit={this.props.handleSubmit}>
-                <div>
-                    <input type="text" name="username" placeholder="username" onChange={this.props.handleInputChange}/>
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="password" onChange={this.props.handleInputChange}/>
-                </div>
-                <div>
-                    <input type="submit"/>
-                </div>
+                <input className="inputControl" type="text" name="username" placeholder="username" onChange={this.props.handleInputChange}/>
+                <input className="inputControl" type="password" name="password" placeholder="password" onChange={this.props.handleInputChange}/>
+                <button className="btn" type="submit">Sign in</button>
             </form>
         )
     }
@@ -42,7 +36,7 @@ class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         auth.login(this.state.username, this.state.password, (response) => {
-            console.log(response);
+            console.log(response, 'LOGIN RESPONSE');
             this.props.onLogin();
         })
     }

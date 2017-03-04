@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from rest_framework import parsers, renderers
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -7,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.reverse import reverse
 
+from .models import User
 from .serializers import UserSerializer
 
 

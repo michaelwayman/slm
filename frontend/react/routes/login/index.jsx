@@ -1,9 +1,15 @@
 import React from 'react';
 import { hashHistory } from 'react-router'
 
-import {LoginForm} from '../home/components/index.jsx';
+import {LoginForm} from './components/index.jsx';
+
+import './styles.scss';
 
 class LoginPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     onLogin() {
         hashHistory.push('/dashboard')
@@ -12,7 +18,14 @@ class LoginPage extends React.Component {
     render() {
         return (
             <section id="loginPage">
-                <LoginForm onLogin={this.onLogin}/>
+                <div className="logo"></div>
+                <h3>Sign in to SLM</h3>
+                <div className="boxContainer login">
+                    <LoginForm onLogin={this.onLogin}/>
+                </div>
+                <div className="boxContainer createAccount">
+                    <span>New to SLM? <a href="#">Create an account.</a></span>
+                </div>
             </section>
         )
     }

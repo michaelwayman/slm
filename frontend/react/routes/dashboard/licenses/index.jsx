@@ -18,3 +18,5 @@ export class LicensesPage extends React.Component {
         )
     }
 }
+
+export default LicensesPage

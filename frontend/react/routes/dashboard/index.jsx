@@ -1,80 +1,72 @@
 import React from 'react';
+import {Link} from 'react-router';
 
-import {AccountPage} from './account/index.jsx';
-import {OverviewPage} from './overview/index.jsx';
-import {LicensesPage} from './licenses/index.jsx';
+import {NavLink} from '../components/navigation/index.jsx';
 
-// require('./styles.scss');
+import AccountPage from './account/index.jsx';
+import OverviewPage from './overview/index.jsx';
+import LicensesPage from './licenses/index.jsx';
+import GroupsPage from './groups/index.jsx';
+import UsersPage from './users/index.jsx';
+
+import './styles.scss';
 
 
-export class DashboardPage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: '#overview'
-        };
-        this.handleMenuItemClick = this.handleMenuItemClick.bind(this);
-    }
-
-    getPage(page) {
-        switch (page) {
-            case '#overview':
-                return <OverviewPage/>;
-                break;
-            case '#licenses':
-                return <LicensesPage/>;
-                break;
-            case '#groups':
-                return <OverviewPage/>;
-                break;
-            case '#users':
-                return <OverviewPage/>;
-                break;
-            case '#account':
-                return <AccountPage/>;
-                break;
-        }
-    }
-
-    handleMenuItemClick(e) {
-        e.preventDefault();
-        const target = e.currentTarget.getAttribute('href');
-        this.setState({page: target});
-    }
-
+class DashboardPresentation extends React.Component {
     buildMenuItems() {
-        const menuItems = [
-            {name: 'Overview', href: '#overview'},
-            {name: 'Licenses', href: '#licenses'},
-            {name: 'Groups', href: '#groups'},
-            {name: 'Users', href: '#users'},
-            {name: 'Account', href: '#account'},
-        ];
-
-        return menuItems.map((item, index) => {
+        return this.props.menuItems.map((item, index) => {
             return (
-                <li key={index} className={this.state.page == item.href && 'active'}>
-                    <a href={item.href} onClick={this.handleMenuItemClick}>{item.name}</a>
-                </li>
+                <NavLink onlyActiveOnIndex={true} key={index} to={item.href} activeClassName="active">
+                    {/*<i className={`fa ${item.fa} fa-1x`}/>*/}
+                    {item.name}
+                </NavLink>
             )
         })
     }
 
     render() {
-
         return (
-            <section id="dashboardPage">
+            <div id="dashboard">
                 <nav>
-                    <div className="heading"></div>
                     <ul>
                         {this.buildMenuItems()}
                     </ul>
+                    <ul className="bottom">
+                        <li><a href="#"><i className="fa fa-sign-out fa-6x"/> Sign out</a></li>
+                    </ul>
                 </nav>
-                <section>
-                    {this.getPage(this.state.page)}
+                <section className="content">
+                    {this.props.children}
                 </section>
-            </section>
+            </div>
+        )
+    }
+
+}
+
+
+class Dashboard extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuItems: [
+                {name: 'Dashboard', href: '/dashboard', fa: 'fa-dashboard'},
+                {name: 'Licenses', href: '/dashboard/licenses', fa: 'fa-id-card-o'},
+                {name: 'Groups', href: '/dashboard/groups', fa: 'fa-object-group'},
+                {name: 'Users', href: '/dashboard/users', fa: 'fa-users'},
+                {name: 'Account', href: '/dashboard/account', fa: 'fa-address-card'},
+            ]
+        };
+    }
+
+    render() {
+        return (
+            <DashboardPresentation menuItems={this.state.menuItems}>
+                {this.props.children}
+            </DashboardPresentation>
         )
     }
 }
+
+export default {Dashboard, OverviewPage, AccountPage, LicensesPage, GroupsPage, UsersPage}

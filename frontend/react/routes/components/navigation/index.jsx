@@ -1,18 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router'
 
-require('./styles.scss');
+import './styles.scss';
+
+class NavLink extends React.Component {
+    render() {
+        let isActive = this.context.router.isActive(this.props.to, true);
+        let className = isActive ? "active" : "";
+
+        return (
+            <li className={className}>
+                <Link {...this.props}/>
+            </li>
+        );
+    }
+}
+
+NavLink.contextTypes = {
+    router: React.PropTypes.object
+};
 
 
 class Navigation extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleLinkClick = this.handleLinkClick.bind(this);
         this.state = {};
-    }
-
-    handleLinkClick(event) {
-        this.props.onLinkClick(event);
     }
 
     render() {
@@ -26,7 +39,7 @@ class Navigation extends React.Component {
                         <a href="#">Pricing</a>
                     </nav>
                     <section className="actions">
-                        <a href="#">Sign in</a> or <a href="#">Sign up</a>
+                        <Link to="/login">Sign in</Link> or <a href="#">Sign up</a>
                     </section>
                 </div>
             </section>
@@ -34,4 +47,4 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation
+export {Navigation, NavLink}

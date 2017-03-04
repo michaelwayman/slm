@@ -1,9 +1,7 @@
 import React from 'react';
 
-// require('./styles.scss');
 
-
-class AccountPage extends React.Component {
+class GroupsPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,11 +10,11 @@ class AccountPage extends React.Component {
 
     render() {
         return (
-            <section id="accountPage">
-                <h1>Account</h1>
+            <section id="groupsPage">
+                <h1>Groups</h1>
             </section>
         )
     }
 }
 
-export default AccountPage
+export default GroupsPage;

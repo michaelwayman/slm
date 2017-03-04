@@ -17,12 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from api.views import OrganizationViewSet
+# from api.views import OrganizationViewSet
 from users.views import UserViewSet, ObtainAuthToken
 
 router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
-router.register(r'organizations', OrganizationViewSet)
+# router.register(r'organizations', OrganizationViewSet)
 
 
 urlpatterns = [
