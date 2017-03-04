@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { RegistrationForm } from '../forms/index.jsx';
+import { RegistrationForm } from '../../home/components/index.jsx';
 
 
 require('./styles.scss');

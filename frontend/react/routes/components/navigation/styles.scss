@@ -1,0 +1,55 @@
+
+.nav {
+  background-color: #24292e;
+  width: 100%;
+
+  .container {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    &:before {
+      display: table;
+      content: '';
+    }
+
+    &:after {
+      display: table;
+      content: '';
+      clear: both;
+    }
+
+  }
+
+  .navLinks {
+    float: left;
+
+    a {
+      margin-left: 20px;
+    }
+  }
+
+  .actions {
+    color: #586069;
+    float: right;
+
+    a {
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  a {
+    color: white;
+    line-height: 20px;
+    font-size: 16px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    position: relative;
+    text-decoration: none;
+  }
+}

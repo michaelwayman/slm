@@ -1,0 +1,14 @@
+.form {
+
+  input {
+    padding: 4px;
+  }
+
+  &.inline {
+    div {
+      display: inline-block;
+      margin: 0 4px;
+    }
+  }
+
+}

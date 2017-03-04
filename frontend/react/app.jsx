@@ -2,20 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
-import {LandingPage} from './pages/landing/index.jsx';
-import {DashboardPage} from './pages/dashboard/index.jsx';
-import Navigation from "./components/navigation/index.jsx";
+import HomePage from './routes/home/index.jsx';
+import {DashboardPage} from './routes/dashboard/index.jsx';
+import LoginPage from './routes/login/index.jsx';
+
+import Navigation from "./routes/components/navigation/index.jsx";
 
 import auth from './managers/auth.jsx';
 
-require('./pages/styles/styles.scss');
+import './styles.scss';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {};
-        // console.log(IndexRoute)
     }
 
     componentDidMount() {
@@ -34,8 +35,9 @@ class App extends React.Component {
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path='/' component={App}>
-            <IndexRoute component={LandingPage}/>
-            <Route path='/dashboard' component={DashboardPage}/>
+            <IndexRoute component={HomePage}/>
+            <Route path='/dashboard' component={DashboardPage} onEnter={auth.requireAuth}/>
+            <Route path='/login' component={LoginPage} />
         </Route>
         {/*<Route path='*' component={NoMatch}/>*/}
   </Router>,

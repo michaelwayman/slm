@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 
-function getToken(username, pass, cb) {
+function login(username, pass, cb) {
     $.ajax({
         type: 'POST',
         url: '/api/obtain-auth-token/',
@@ -9,31 +9,17 @@ function getToken(username, pass, cb) {
             username: username,
             password: pass
         },
-        success: function(response){
+        success: function(response) {
+            localStorage.token = response.token;
             cb({
-                authenticated: true,
-                token: response.token
+                token: response.token,
+                user: response.user
             })
         }
-    })
+    });
 }
 
-function login(username, pass, cb) {
-    if (localStorage.token) {
-        if (cb) cb(true);
-        return
-    }
-    getToken(username, pass, (response) => {
-        if (response.authenticated) {
-            localStorage.token = response.token;
-            if (cb) cb(true)
-        } else {
-            if (cb) cb(false)
-        }
-    })
-}
-
-function logout() {
+function deleteToken() {
     delete localStorage.token
 }
 
@@ -42,12 +28,14 @@ function loggedIn() {
 }
 
 function requireAuth(nextState, replace) {
+    console.log(nextState);
+    console.log(replace);
     if (!loggedIn()) {
         replace({
-            pathname:'/login/',
-            state: {nextPathname: '/app/'}
+            pathname:'/',
+            state: {nextPathname: '/dashboard'}
         })
     }
 }
 
-export default {login, loggedIn, requireAuth}
+export default {login, loggedIn, requireAuth, deleteToken}

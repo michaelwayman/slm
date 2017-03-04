@@ -16,17 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from rest_framework.authtoken.views import obtain_auth_token
 
-from api.views import OrganizationViewSet, UserViewSet
+from api.views import OrganizationViewSet
+from users.views import UserViewSet, ObtainAuthToken
 
 router = routers.SimpleRouter()
-router.register(r'users', UserViewSet, 'list')
+router.register(r'users', UserViewSet)
 router.register(r'organizations', OrganizationViewSet)
 
 
 urlpatterns = [
-    url(r'^api/obtain-auth-token/$', obtain_auth_token),
+    url(r'^api/obtain-auth-token/$', ObtainAuthToken.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls))
 ]

@@ -5,4 +5,4 @@
 
 ## Running
 
- 1. `npm serve` serves our frontend site @ http://localhost:8080
+ 1. `npm run serve` serves our frontend site @ http://localhost:8080

@@ -4,7 +4,7 @@ import {AccountPage} from './account/index.jsx';
 import {OverviewPage} from './overview/index.jsx';
 import {LicensesPage} from './licenses/index.jsx';
 
-require('./styles.scss');
+// require('./styles.scss');
 
 
 export class DashboardPage extends React.Component {

@@ -5,6 +5,7 @@ backend/slm/db.sqlite3
 node_modules/
 
 *.pyc
+*.log
 
 *.css
 *.css.map
