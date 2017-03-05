@@ -1,5 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
+import { hashHistory } from 'react-router'
+
+import auth from '../../managers/auth.jsx';
 
 import {NavLink} from '../components/navigation/index.jsx';
 
@@ -32,7 +35,7 @@ class DashboardPresentation extends React.Component {
                         {this.buildMenuItems()}
                     </ul>
                     <ul className="bottom">
-                        <li><a href="#"><i className="fa fa-sign-out fa-6x"/> Sign out</a></li>
+                        <li><a href="#" onClick={this.props.onLogout}><i className="fa fa-sign-out fa-6x"/> Sign out</a></li>
                     </ul>
                 </nav>
                 <section className="content">
@@ -58,11 +61,20 @@ class Dashboard extends React.Component {
                 {name: 'Account', href: '/dashboard/account', fa: 'fa-address-card'},
             ]
         };
+
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+
+    handleLogoutClick(e) {
+        e.preventDefault();
+        auth.logout(() => {
+            hashHistory.push('/');
+        });
     }
 
     render() {
         return (
-            <DashboardPresentation menuItems={this.state.menuItems}>
+            <DashboardPresentation menuItems={this.state.menuItems} onLogout={this.handleLogoutClick}>
                 {this.props.children}
             </DashboardPresentation>
         )

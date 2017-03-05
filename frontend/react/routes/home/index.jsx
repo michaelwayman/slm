@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 import Jumbotron from '../components/jumbotron/index.jsx';
 import {Navigation} from '../components/navigation/index.jsx';
@@ -12,6 +13,10 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    onRegister() {
+        hashHistory.push('/login')
     }
 
     render() {
@@ -30,7 +35,7 @@ class HomePage extends React.Component {
                             </p>
                         </div>
                         <div className="col-5">
-                            <RegistrationForm/>
+                            <RegistrationForm onRegister={this.onRegister}/>
                         </div>
                     </div>
                 </Jumbotron>

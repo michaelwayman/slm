@@ -34,8 +34,8 @@ class App extends React.Component {
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path='/' component={App}>
-            <IndexRoute component={HomePage}/>
-            <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={auth.requireAuth}>
+            <IndexRoute component={HomePage} onEnter={auth.authorizedRedirect}/>
+            <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={auth.requireAuthorization}>
                 <IndexRoute component={Dashboard.OverviewPage}/>
                 <Route path='/dashboard/licenses' component={Dashboard.LicensesPage} />
                 <Route path='/dashboard/account' component={Dashboard.AccountPage} />

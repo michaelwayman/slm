@@ -12,6 +12,11 @@
     padding-top: 150px;
     position: fixed;
     width: 250px;
+    background-image: url('/images/landing.svg');
+    //background-position: center -75px, 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+
   }
 
   ul {

@@ -45,6 +45,13 @@ h3 {
 form {
   margin: 0 auto;
 
+  .formError {
+    padding: 8px 0;
+    span {
+      color: red;
+    }
+  }
+
   .btn {
     background-clip: padding-box;
     cursor: pointer;

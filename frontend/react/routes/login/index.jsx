@@ -12,6 +12,8 @@ class LoginPage extends React.Component {
     }
 
     onLogin() {
+        console.log(this.props);
+        // if (this.props.location.state && location.state.nextPathname)
         hashHistory.push('/dashboard')
     }
 
