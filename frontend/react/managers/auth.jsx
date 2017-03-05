@@ -58,8 +58,6 @@ function loggedIn() {
 }
 
 function requireAuthorization(nextState, replace) {
-    console.log(nextState);
-    console.log(replace);
     if (!loggedIn()) {
         replace({
             pathname:'/login',

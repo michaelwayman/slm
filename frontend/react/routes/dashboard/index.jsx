@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import { hashHistory } from 'react-router'
 
 import auth from '../../managers/auth.jsx';
+import dboard from '../../managers/dashboard.jsx';
 
 import {NavLink} from '../components/navigation/index.jsx';
 
@@ -31,6 +32,7 @@ class DashboardPresentation extends React.Component {
         return (
             <div id="dashboard">
                 <nav>
+                    <div className="title"><span>{this.props.userDetails.email}</span></div>
                     <ul>
                         {this.buildMenuItems()}
                     </ul>
@@ -59,10 +61,19 @@ class Dashboard extends React.Component {
                 {name: 'Groups', href: '/dashboard/groups', fa: 'fa-object-group'},
                 {name: 'Users', href: '/dashboard/users', fa: 'fa-users'},
                 {name: 'Account', href: '/dashboard/account', fa: 'fa-address-card'},
-            ]
+            ],
+            userDetails: {}
         };
 
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+
+    componentDidMount() {
+        dboard.userDetails((status, data) => {
+            console.log(status, data, 'USER DETAILS RESPONSE');
+            this.setState({userDetails: data})
+        })
+
     }
 
     handleLogoutClick(e) {
@@ -74,7 +85,7 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <DashboardPresentation menuItems={this.state.menuItems} onLogout={this.handleLogoutClick}>
+            <DashboardPresentation menuItems={this.state.menuItems} onLogout={this.handleLogoutClick} userDetails={this.state.userDetails}>
                 {this.props.children}
             </DashboardPresentation>
         )

@@ -1,0 +1,35 @@
+.countBar {
+  background-color: #f0f0f0;
+  width: 100%;
+
+  > .separator {
+    background-color: black;
+    display: inline-block;
+    height: 50px;
+    width: 1px;
+  }
+
+  > .item {
+    display: inline-block;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    width: 200px;
+    //margin: 0 auto;
+
+    > .container {
+      text-align: center;
+
+      .title {
+        font-size: 14px;
+      }
+      .value {
+        padding-top: 8px;
+
+        span {
+          font-size: 48px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

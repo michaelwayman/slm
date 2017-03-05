@@ -24,18 +24,3 @@
     max-width: 340px;
   }
 }
-
-.row {
-  >div {
-    display: inline-block;
-    vertical-align: top;
-  }
-}
-
-.col-5 {
-  width: 5/12*100%;
-}
-
-.col-7 {
-  width: 7/12*100%;
-}

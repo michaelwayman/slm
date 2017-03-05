@@ -1,4 +1,4 @@
-from rest_framework import parsers, renderers
+from rest_framework import renderers
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
@@ -7,15 +7,13 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.reverse import reverse
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import RegisterUserSerializer
 
 
 class ObtainAuthToken(APIView):
-    throttle_classes = ()
-    permission_classes = ()
-    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
     renderer_classes = (renderers.JSONRenderer,)
     serializer_class = AuthTokenSerializer
+    http_method_names = ('post',)
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -30,5 +28,5 @@ class ObtainAuthToken(APIView):
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = RegisterUserSerializer
     model = User

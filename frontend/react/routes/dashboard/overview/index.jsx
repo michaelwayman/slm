@@ -1,9 +1,24 @@
 import React from 'react';
 
-// require('./styles.scss');
+import {Charts, CountBar, Card} from './components/index.jsx';
+
+import './styles.scss';
 
 
-export class OverviewPage extends React.Component {
+class OverviewPresentation extends React.Component {
+    render() {
+        return (
+            <section id="overviewPage">
+                <CountBar/>
+                <Charts.AccountActivityChart/>
+                {/*<Card/>*/}
+            </section>
+        )
+    }
+}
+
+
+class Overview extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,11 +27,9 @@ export class OverviewPage extends React.Component {
 
     render() {
         return (
-            <section id="overviewPage">
-                <h1>Dashboard</h1>
-            </section>
+            <OverviewPresentation/>
         )
     }
 }
 
-export default OverviewPage
+export default Overview

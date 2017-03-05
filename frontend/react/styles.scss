@@ -21,7 +21,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 64px;
-
 }
 
 h2 {
@@ -76,3 +75,15 @@ form {
 
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+
+.row {
+  >div {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} { width: $i / 12 * 100%; }
+}
