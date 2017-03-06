@@ -1,10 +1,10 @@
-import React from 'react'
-import auth from '../../../managers/auth.jsx';
+import React from 'react';
+import fetch from 'isomorphic-fetch';
 
 class Form extends React.Component {
 
-    formErrors() {
-        return this.props.formErrors.map((item, index) => {
+    nonFieldErrors() {
+        return this.props.formErrors.non_field_errors.map((item, index) => {
             return (
                 <div key={index} className="formError">
                     <span>{item}</span>
@@ -16,9 +16,18 @@ class Form extends React.Component {
     render() {
         return (
             <form className="form inline" onSubmit={this.props.handleSubmit}>
-                {this.formErrors()}
-                <input className="inputControl" value={this.props.username} type="text" name="username" placeholder="username" onChange={this.props.handleInputChange}/>
-                <input className="inputControl" type="password" name="password" placeholder="password" onChange={this.props.handleInputChange}/>
+                {this.props.formErrors.non_field_errors && this.nonFieldErrors()}
+                <input className="inputControl"
+                       type="text"
+                       name="username"
+                       placeholder="username"
+                       value={this.props.initialData.username}
+                       onChange={this.props.handleInputChange}/>
+                <input className="inputControl"
+                       type="password"
+                       name="password"
+                       placeholder="password"
+                       onChange={this.props.handleInputChange}/>
                 <button className="btn" type="submit">Sign in</button>
             </form>
         )
@@ -30,14 +39,12 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: localStorage.email || '',
-            password: '',
-            formErrors: [],
-            fieldErrors: {
-                username: [],
-                password: []
+            formData: Object.assign({}, this.props.initialData),
+            formErrors: {
+                non_field_errors: [],
             },
         };
+        console.log(this.state, 'wayman');
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,20 +56,31 @@ class LoginForm extends React.Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            formData: Object.assign({}, this.state.formData, {[name]: value})
         });
     }
 
     handleSubmit(e) {
+        console.log(this.state);
         e.preventDefault();
-        auth.login(this.state.username, this.state.password, (statusCode, data) => {
-            console.log(statusCode, data, 'LOGIN RESPONSE');
-            if (statusCode == 200) {
-                this.props.onLogin();
-            } else {
-                const errors = {};
-                if (data.non_field_errors) errors.formErrors = data.non_field_errors;
-                this.setState(errors);
+        fetch('/api/obtain-auth-token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.formData)
+        })
+        .then(response => {
+            if (response.status == 200) {
+                response.json().then(data => {
+                    this.props.onSuccessfulSubmit(data)
+                });
+            }
+            else if (response.status == 400) {
+                response.json().then(data => {
+                    console.log(data);
+                    this.setState({ formErrors: data })
+                });
             }
         })
     }
@@ -72,7 +90,7 @@ class LoginForm extends React.Component {
             <Form handleSubmit={this.handleSubmit}
                   handleInputChange={this.handleInputChange}
                   formErrors={this.state.formErrors}
-                  username={this.state.username}/>
+                  initialData={this.state.formData}/>
         )
     }
 }

@@ -1,23 +1,3 @@
-import $ from 'jquery';
-
-
-function login(username, pass, cb) {
-    $.ajax({
-        type: 'POST',
-        url: '/api/obtain-auth-token/',
-        data: {
-            username: username,
-            password: pass
-        },
-        success: function(data, textStatus, jqXHR) {
-            saveTokenData(data.token, data.user);
-            cb(jqXHR.status, data)
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            cb(jqXHR.status, jqXHR.responseJSON)
-        }
-    });
-}
 
 function logout(cb) {
     deleteTokenData();
@@ -26,31 +6,31 @@ function logout(cb) {
 
 function register(email, pass, cb) {
 
-    $.ajax({
-        type: 'POST',
-        url: '/api/users/',
-        data: {
-            email: email,
-            password: pass
-        },
-        success: function(data, textStatus, jqXHR) {
-            localStorage.email = email;
-            cb(jqXHR.status, data)
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            cb(jqXHR.status, jqXHR.responseJSON)
-        }
-    });
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/api/users/',
+    //     data: {
+    //         email: email,
+    //         password: pass
+    //     },
+    //     success: function(data, textStatus, jqXHR) {
+    //         localStorage.email = email;
+    //         cb(jqXHR.status, data)
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //         cb(jqXHR.status, jqXHR.responseJSON)
+    //     }
+    // });
 }
 
-function saveTokenData(token, user) {
+function saveTokenData(token, email) {
     localStorage.token = token;
-    localStorage.user = user;
+    localStorage.email = email;
 }
 
 function deleteTokenData() {
     delete localStorage.token;
-    delete localStorage.user;
+    // delete localStorage.email;
 }
 
 function loggedIn() {
@@ -75,4 +55,4 @@ function authorizedRedirect(nextState, replace) {
     }
 }
 
-export default {login, loggedIn, requireAuthorization, logout, authorizedRedirect, register}
+export default {loggedIn, requireAuthorization, logout, authorizedRedirect, register, saveTokenData}

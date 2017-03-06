@@ -70,7 +70,6 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         dboard.userDetails((status, data) => {
-            console.log(status, data, 'USER DETAILS RESPONSE');
             this.setState({userDetails: data})
         })
 

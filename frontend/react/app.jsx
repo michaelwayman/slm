@@ -1,6 +1,13 @@
+import 'babel-polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+
+import {mainReducer, initialState} from './reducers/index.jsx';
 
 import HomePage from './routes/home/index.jsx';
 import Dashboard from './routes/dashboard/index.jsx';
@@ -31,20 +38,29 @@ class App extends React.Component {
     }
 }
 
+const store = createStore(
+    mainReducer,
+    initialState,
+    applyMiddleware(thunkMiddleware)
+);
+
+
 ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path='/' component={App}>
-            <IndexRoute component={HomePage} onEnter={auth.authorizedRedirect}/>
-            <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={auth.requireAuthorization}>
-                <IndexRoute component={Dashboard.OverviewPage}/>
-                <Route path='/dashboard/licenses' component={Dashboard.LicensesPage} />
-                <Route path='/dashboard/account' component={Dashboard.AccountPage} />
-                <Route path='/dashboard/users' component={Dashboard.UsersPage} />
-                <Route path='/dashboard/groups' component={Dashboard.GroupsPage} />
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path='/' component={App}>
+                <IndexRoute component={HomePage} onEnter={auth.authorizedRedirect}/>
+                <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={auth.requireAuthorization}>
+                    <IndexRoute component={Dashboard.OverviewPage}/>
+                    <Route path='/dashboard/licenses' component={Dashboard.LicensesPage} />
+                    <Route path='/dashboard/account' component={Dashboard.AccountPage} />
+                    <Route path='/dashboard/users' component={Dashboard.UsersPage} />
+                    <Route path='/dashboard/groups' component={Dashboard.GroupsPage} />
+                </Route>
+                <Route path='/login' component={LoginPage} />
             </Route>
-            <Route path='/login' component={LoginPage} />
-        </Route>
-        {/*<Route path='*' component={NoMatch}/>*/}
-  </Router>,
+            {/*<Route path='*' component={NoMatch}/>*/}
+        </Router>
+    </Provider>,
   document.getElementById('reactEntry')
 );

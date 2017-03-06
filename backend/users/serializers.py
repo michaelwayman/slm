@@ -32,3 +32,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         data = super(RegisterUserSerializer, self).validate(attrs)
         data['username'] = data['email']
         return data
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('pk', 'email')
