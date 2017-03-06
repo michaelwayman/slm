@@ -23,14 +23,16 @@ function register(email, pass, cb) {
     // });
 }
 
-function saveTokenData(token, email) {
+function saveTokenData(token) {
     localStorage.token = token;
+}
+
+function saveEmailData(email) {
     localStorage.email = email;
 }
 
 function deleteTokenData() {
     delete localStorage.token;
-    // delete localStorage.email;
 }
 
 function loggedIn() {
@@ -55,4 +57,4 @@ function authorizedRedirect(nextState, replace) {
     }
 }
 
-export default {loggedIn, requireAuthorization, logout, authorizedRedirect, register, saveTokenData}
+export default {loggedIn, requireAuthorization, logout, authorizedRedirect, register, saveTokenData, saveEmailData}

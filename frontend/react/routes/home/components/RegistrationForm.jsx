@@ -1,10 +1,9 @@
 import React from 'react';
 
-import auth from '../../../managers/auth.jsx';
 
 class Form extends React.Component {
 
-    formErrors() {
+    nonFieldErrors() {
         return this.props.formErrors.map((item, index) => {
             return (
                 <div key={index} className="formError">
@@ -17,10 +16,22 @@ class Form extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit}>
-                {this.formErrors()}
-                <input className="inputControl" type="email" placeholder="email" name="email" onChange={this.props.handleInputChange}/>
-                <input className="inputControl" type="password" placeholder="password" name="password" onChange={this.props.handleInputChange}/>
-                <input className="inputControl" type="password" placeholder="again" name="again" onChange={this.props.handleInputChange}/>
+                {this.props.formErrors.nonFieldErrors && this.nonFieldErrors()}
+                <input className="inputControl"
+                       type="email"
+                       placeholder="email"
+                       name="email"
+                       onChange={this.props.handleInputChange}/>
+                <input className="inputControl"
+                       type="password"
+                       placeholder="password"
+                       name="password"
+                       onChange={this.props.handleInputChange}/>
+                <input className="inputControl"
+                       type="password"
+                       placeholder="again"
+                       name="again"
+                       onChange={this.props.handleInputChange}/>
                 <button className="btn" type="submit">Sign up for SLM</button>
             </form>
         );
@@ -32,14 +43,8 @@ class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            again: '',
-            formErrors: [],
-            fieldErrors: {
-                username: [],
-                password: []
-            },
+            formData: {},
+            formErrors: {}
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -52,20 +57,29 @@ class RegistrationForm extends React.Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            formData: Object.assign({}, this.state.formData, {[name]: value})
         });
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        auth.register(this.state.email, this.state.password, (statusCode, data) => {
-            console.log(statusCode, data, 'REGISTRATION RESPONSE');
-            if (statusCode == 201) {
-                this.props.onRegister();
-            } else {
-                const errors = {};
-                if (data.non_field_errors) errors.formErrors = data.non_field_errors;
-                this.setState(errors);
+        fetch('/api/users/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.formData)
+        })
+        .then(response => {
+            if (response.status == 201) {
+                response.json().then(data => {
+                    this.props.onSuccessfulSubmit(data)
+                });
+            }
+            else if (response.status == 400) {
+                response.json().then(data => {
+                    this.setState({ formErrors: data })
+                });
             }
         })
     }

@@ -1,9 +1,11 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-
+import { connect } from 'react-redux';
 import Jumbotron from '../components/jumbotron/index.jsx';
 import {Navigation} from '../components/navigation/index.jsx';
 import {RegistrationForm} from './components/index.jsx';
+import {receiveRegistrationSuccessResponse} from '../../actions/index.jsx';
+import auth from '../../managers/auth.jsx';
 
 import './styles.scss';
 
@@ -13,10 +15,13 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.onSuccessfulSubmit = this.onSuccessfulSubmit.bind(this);
     }
 
-    onRegister() {
-        hashHistory.push('/login')
+    onSuccessfulSubmit(responseData) {
+        auth.saveEmailData(responseData.email);
+        this.props.dispatch(receiveRegistrationSuccessResponse(responseData));
+        hashHistory.push('/login');
     }
 
     render() {
@@ -35,7 +40,7 @@ class HomePage extends React.Component {
                             </p>
                         </div>
                         <div className="col-5">
-                            <RegistrationForm onRegister={this.onRegister}/>
+                            <RegistrationForm onSuccessfulSubmit={this.onSuccessfulSubmit}/>
                         </div>
                     </div>
                 </Jumbotron>
@@ -44,4 +49,8 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage
+export default connect(
+    (state) => {
+        return {user: state.user}
+    }
+)(HomePage)

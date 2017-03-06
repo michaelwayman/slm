@@ -25,7 +25,7 @@ class CountBar extends React.Component {
         ];
 
         return entities.map((item, index) => {
-            return <CountItem fa={item.fa} title={item.title} value={item.value}/>
+            return <CountItem key={index} fa={item.fa} title={item.title} value={item.value}/>
         })
     }
 

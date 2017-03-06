@@ -1,7 +1,7 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
-import {receiveLoginResponse} from '../../actions/index.jsx';
+import {receiveLoginSuccessResponse} from '../../actions/index.jsx';
 import auth from '../../managers/auth.jsx';
 import {LoginForm} from './components/index.jsx';
 
@@ -13,13 +13,13 @@ class LoginPage extends React.Component {
         super(props);
         console.log(props);
         this.state = {};
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSuccessfulSubmit = this.onSuccessfulSubmit.bind(this);
     }
 
     onSuccessfulSubmit(responseData) {
         auth.saveTokenData(responseData.token, responseData.email);
+        this.props.dispatch(receiveLoginSuccessResponse(responseData));
         hashHistory.push('/dashboard');
-        this.props.dispatch(receiveLoginResponse(responseData));
     }
 
     render() {
@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
                 <div className="logo"></div>
                 <h3>Sign in to SLM</h3>
                 <div className="boxContainer login">
-                    <LoginForm onSubmit={this.onSuccessfulSubmit} initialData={initialData}/>
+                    <LoginForm onSuccessfulSubmit={this.onSuccessfulSubmit} initialData={initialData}/>
                 </div>
                 <div className="boxContainer createAccount">
                     <span>New to SLM? <a href="#">Create an account.</a></span>

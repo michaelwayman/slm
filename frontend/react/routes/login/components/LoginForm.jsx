@@ -44,7 +44,6 @@ class LoginForm extends React.Component {
                 non_field_errors: [],
             },
         };
-        console.log(this.state, 'wayman');
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,7 +77,6 @@ class LoginForm extends React.Component {
             }
             else if (response.status == 400) {
                 response.json().then(data => {
-                    console.log(data);
                     this.setState({ formErrors: data })
                 });
             }
