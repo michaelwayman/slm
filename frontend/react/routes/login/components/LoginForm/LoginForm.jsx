@@ -1,5 +1,10 @@
 import React from 'react';
-import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
+
+import { logUserIn } from './actions.jsx';
+
+import auth from '../../../../managers/auth.jsx';
 
 class Form extends React.Component {
 
@@ -39,10 +44,10 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formData: Object.assign({}, this.props.initialData),
-            formErrors: {
-                non_field_errors: [],
-            },
+            formData: Object.assign({}, {
+                // username: this.props.user.email
+            }),
+            formErrors: {},
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -60,27 +65,19 @@ class LoginForm extends React.Component {
     }
 
     handleSubmit(e) {
-        console.log(this.state);
         e.preventDefault();
-        fetch('/api/obtain-auth-token/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        console.log(this.state);
+
+        this.props.dispatch(logUserIn(
+            this.state.formData,
+            data => {
+                auth.saveTokenData(data.token, data.email);
+                hashHistory.push('/dashboard');
             },
-            body: JSON.stringify(this.state.formData)
-        })
-        .then(response => {
-            if (response.status == 200) {
-                response.json().then(data => {
-                    this.props.onSuccessfulSubmit(data)
-                });
+            data => {
+                this.setState({formErrors: data})
             }
-            else if (response.status == 400) {
-                response.json().then(data => {
-                    this.setState({ formErrors: data })
-                });
-            }
-        })
+        ));
     }
 
     render() {
@@ -93,4 +90,8 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+export default connect(
+    (state) => {
+        return {user: state.user}
+    }
+)(LoginForm)

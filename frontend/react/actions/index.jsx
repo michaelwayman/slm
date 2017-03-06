@@ -1,18 +1,26 @@
 import fetch from 'isomorphic-fetch';
 
 
-export const RECEIVE_LOGIN_SUCCESS_RESPONSE = 'RECEIVE_LOGIN_SUCCESS_RESPONSE';
-export function receiveLoginSuccessResponse(responseData) {
+export const REQUEST_ORGANIZATION_DATA = 'REQUEST_ORGANIZATION_DATA';
+export function requestOrganizationData() {
     return {
-        type: RECEIVE_LOGIN_SUCCESS_RESPONSE,
+        type: REQUEST_ORGANIZATION_DATA,
+    }
+}
+
+export const RECEIVE_ORGANIZATION_DATA = 'RECEIVE_ORGANIZATION_DATA';
+export function receiveOrganizationData(responseData) {
+    return {
+        type: RECEIVE_ORGANIZATION_DATA,
         data: responseData
     }
 }
 
-export const RECEIVE_REGISTRATION_SUCCESS_RESPONSE = 'RECEIVE_REGISTRATION_SUCCESS_RESPONSE';
-export function receiveRegistrationSuccessResponse(responseData) {
-    return {
-        type: RECEIVE_REGISTRATION_SUCCESS_RESPONSE,
-        data: responseData
-    }
+export function fetchOrganizationData(organizationDetailsUrl) {
+    return dispatch => {
+        dispatch(requestOrganizationData());
+        return fetch(organizationDetailsUrl)
+            .then(response => response.json())
+            .then(json => dispatch(receiveOrganizationData(json)))
+      }
 }

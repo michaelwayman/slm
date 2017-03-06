@@ -1,47 +1,43 @@
+import { combineReducers } from 'redux';
+
 import {
-    RECEIVE_LOGIN_SUCCESS_RESPONSE,
-    RECEIVE_REGISTRATION_SUCCESS_RESPONSE
+    RECEIVE_ORGANIZATION_DATA,
 } from '../actions/index.jsx';
 
-
 const initialState = {
-    user: {
-        id: null,
-        token: localStorage.token || null,
-        email: localStorage.email || '',
-        userDetails: null
+    organization: {
+        organizationDetails: null
     },
     licenses: [],
     users: [],
     groups: []
 };
 
+import loginReducer from '../routes/login/components/LoginForm/reducers.jsx';
+import registrationReducer from '../routes/home/components/RegistrationForm/reducers.jsx';
+
 function mainReducer(state = initialState, action) {
-    console.log(action, state, 'REDUCER');
-    let nextState = {};
     switch (action.type) {
-        case RECEIVE_LOGIN_SUCCESS_RESPONSE:
-            nextState = Object.assign({}, state, {
-                user: {
-                    id: action.data.id,
-                    userDetails: action.data.userDetails,
-                    token: action.data.token,
-                    email: action.data.email
-                }
-            });
-            break;
-        case RECEIVE_REGISTRATION_SUCCESS_RESPONSE:
-            nextState = Object.assign({}, state, {
-                user: {
-                    email: action.data.email
-                }
+        case RECEIVE_ORGANIZATION_DATA:
+            return Object.assign({}, state, {
+                organization: action.data
             });
             break;
         default:
             return state
     }
-    console.log(nextState);
-    return nextState;
 }
 
-export {mainReducer, initialState}
+function reduceReducers(...reducers) {
+  return (previous, current) =>
+    reducers.reduce(
+      (p, r) => r(p, current), previous
+    );
+}
+
+const rootReducer = combineReducers(
+    mainReducer,
+    reduceReducers(loginReducer, registrationReducer)
+);
+
+export default reduceReducers(loginReducer, registrationReducer);

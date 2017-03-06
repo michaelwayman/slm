@@ -6,8 +6,9 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 
-import {mainReducer, initialState} from './reducers/index.jsx';
+import rootReducer from './reducers/index.jsx';
 
 import HomePage from './routes/home/index.jsx';
 import Dashboard from './routes/dashboard/index.jsx';
@@ -38,12 +39,12 @@ class App extends React.Component {
     }
 }
 
-const store = createStore(
-    mainReducer,
-    initialState,
-    applyMiddleware(thunkMiddleware)
-);
+const logger = createLogger();
 
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunkMiddleware, logger)
+);
 
 ReactDOM.render(
     <Provider store={store}>

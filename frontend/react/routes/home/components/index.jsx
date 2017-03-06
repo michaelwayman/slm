@@ -1,3 +1,3 @@
-import RegistrationForm from './RegistrationForm.jsx'
+import RegistrationForm from './RegistrationForm/RegistrationForm.jsx'
 
 export {RegistrationForm}

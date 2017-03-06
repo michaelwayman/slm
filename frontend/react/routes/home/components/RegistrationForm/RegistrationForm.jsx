@@ -1,5 +1,8 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
 
+import { registerUser } from './actions.jsx';
 
 class Form extends React.Component {
 
@@ -63,25 +66,15 @@ class RegistrationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        fetch('/api/users/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        this.props.dispatch(registerUser(
+            this.state.formData,
+            data => {
+                hashHistory.push('/login');
             },
-            body: JSON.stringify(this.state.formData)
-        })
-        .then(response => {
-            if (response.status == 201) {
-                response.json().then(data => {
-                    this.props.onSuccessfulSubmit(data)
-                });
+            data => {
+                this.setState({formErrors: data})
             }
-            else if (response.status == 400) {
-                response.json().then(data => {
-                    this.setState({ formErrors: data })
-                });
-            }
-        })
+        ));
     }
 
     render() {
@@ -91,4 +84,4 @@ class RegistrationForm extends React.Component {
     }
 }
 
-export default RegistrationForm
+export default connect()(RegistrationForm)

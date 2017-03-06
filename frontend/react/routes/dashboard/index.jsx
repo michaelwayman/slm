@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router';
-import { hashHistory } from 'react-router'
+import { hashHistory, Link } from 'react-router'
+import { connect } from 'react-redux';
 
 import auth from '../../managers/auth.jsx';
-import dboard from '../../managers/dashboard.jsx';
-
+// import dboard from '../../managers/dashboard.jsx';
+import {fetchOrganizationData} from '../../actions/index.jsx';
 import {NavLink} from '../components/navigation/index.jsx';
 
 import AccountPage from './account/index.jsx';
@@ -50,7 +50,7 @@ class DashboardPresentation extends React.Component {
 }
 
 
-class Dashboard extends React.Component {
+class DashboardA extends React.Component {
 
     constructor(props) {
         super(props);
@@ -69,9 +69,11 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        dboard.userDetails((status, data) => {
-            this.setState({userDetails: data})
-        })
+        this.props.dispatch(fetchOrganizationData(this.props.organization.organizationDetails));
+
+        // dboard.userDetails((status, data) => {
+        //     this.setState({userDetails: data})
+        // })
 
     }
 
@@ -90,5 +92,12 @@ class Dashboard extends React.Component {
         )
     }
 }
+
+const Dashboard = connect(
+    (state) => {
+        return state
+    }
+)(DashboardA);
+
 
 export default {Dashboard, OverviewPage, AccountPage, LicensesPage, GroupsPage, UsersPage}

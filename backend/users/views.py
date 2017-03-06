@@ -25,6 +25,7 @@ class ObtainAuthToken(APIView):
             'email': user.email,
             'userDetails': reverse('user-detail', request=request, kwargs={'pk': user.pk}),
             'id': user.id,
+            'organizationDetails': reverse('organization-detail', request=request, kwargs={'pk': user.organization.pk}),
         })
 
 
