@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './styles.scss';
 
@@ -19,9 +20,9 @@ class CountBar extends React.Component {
 
     buildSummaryEntities() {
         const entities = [
-            {title: 'Total Users',fa: 'fa-users',value: '18'},
-            {title: 'Total Licenses',fa: 'fa-id-card-o',value: '5'},
-            {title: 'Total Groups',fa: 'fa-object-group',value: '3'}
+            {title: 'Total Users',fa: 'fa-users',value: this.props.dashboard.users.length},
+            {title: 'Total Licenses',fa: 'fa-id-card-o',value: this.props.dashboard.licenses.length},
+            {title: 'Total Groups',fa: 'fa-object-group',value: this.props.dashboard.groups.length}
         ];
 
         return entities.map((item, index) => {
@@ -51,4 +52,8 @@ class CountBar extends React.Component {
     }
 }
 
-export default CountBar
+export default connect(
+    (state) => {
+        return {dashboard: state.dashboard}
+    }
+)(CountBar);

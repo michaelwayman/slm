@@ -7,7 +7,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.reverse import reverse
 
 from .models import User
-from .serializers import RegisterUserSerializer
+from .serializers import (
+    RegisterUserSerializer,
+    UserDetailsSerializer,
+)
 
 
 class ObtainAuthToken(APIView):
@@ -31,5 +34,15 @@ class ObtainAuthToken(APIView):
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = RegisterUserSerializer
     model = User
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return RegisterUserSerializer
+        elif self.action == 'details':
+            return UserDetailsSerializer
+        else:
+            pass
+
+    def retrieve(self, request, *args, **kwargs):
+        return super(UserViewSet, self).retrieve(request, *args, **kwargs)

@@ -8,7 +8,7 @@ import { Provider, connect } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import rootReducer from './reducers/index.jsx';
+import rootReducer from './reducers.jsx';
 
 import HomePage from './routes/home/index.jsx';
 import Dashboard from './routes/dashboard/index.jsx';

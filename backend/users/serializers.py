@@ -34,8 +34,15 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return data
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'email')
+        fields = ('id', 'email')
+
+
+class UsersListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'email')

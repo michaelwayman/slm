@@ -9,7 +9,6 @@ class AccountActivityChart extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.refs.lineChart.getCanvas());
         this.refs.lineChart.getCanvas().width = this.refs.chartContainer.offsetWidth;
     }
 

@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
+from dashboard.views import DashboardDetails
 from organizations.views import OrganizationViewSet
 from users.views import UserViewSet, ObtainAuthToken
 
@@ -27,6 +28,7 @@ router.register(r'organizations', OrganizationViewSet)
 
 urlpatterns = [
     url(r'^api/obtain-auth-token/$', ObtainAuthToken.as_view()),
+    url(r'^api/dashboard/$', DashboardDetails.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls))
 ]

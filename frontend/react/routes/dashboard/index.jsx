@@ -3,9 +3,9 @@ import { hashHistory, Link } from 'react-router'
 import { connect } from 'react-redux';
 
 import auth from '../../managers/auth.jsx';
-// import dboard from '../../managers/dashboard.jsx';
-import {fetchOrganizationData} from '../../actions/index.jsx';
 import {NavLink} from '../components/navigation/index.jsx';
+
+import {fetchDashboardDetails} from './actions.jsx';
 
 import AccountPage from './account/index.jsx';
 import OverviewPage from './overview/index.jsx';
@@ -69,12 +69,15 @@ class DashboardA extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(fetchOrganizationData(this.props.organization.organizationDetails));
-
-        // dboard.userDetails((status, data) => {
-        //     this.setState({userDetails: data})
-        // })
-
+        this.props.dispatch(fetchDashboardDetails(
+            this.props.user.token,
+            data => {
+                console.log(data)
+            },
+            data => {
+                console.log(data)
+            }
+        ))
     }
 
     handleLogoutClick(e) {

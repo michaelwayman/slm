@@ -6,7 +6,7 @@ import { logUserIn } from './actions.jsx';
 
 import auth from '../../../../managers/auth.jsx';
 
-class Form extends React.Component {
+class LoginForm extends React.Component {
 
     nonFieldErrors() {
         return this.props.formErrors.non_field_errors.map((item, index) => {
@@ -26,7 +26,7 @@ class Form extends React.Component {
                        type="text"
                        name="username"
                        placeholder="username"
-                       value={this.props.initialData.username}
+                       value={this.props.formData.username || ''}
                        onChange={this.props.handleInputChange}/>
                 <input className="inputControl"
                        type="password"
@@ -39,13 +39,13 @@ class Form extends React.Component {
     }
 }
 
-class LoginForm extends React.Component {
+class LoginFormContainer extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             formData: Object.assign({}, {
-                // username: this.props.user.email
+                username: this.props.user.email
             }),
             formErrors: {},
         };
@@ -66,8 +66,6 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
-
         this.props.dispatch(logUserIn(
             this.state.formData,
             data => {
@@ -82,10 +80,10 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Form handleSubmit={this.handleSubmit}
-                  handleInputChange={this.handleInputChange}
-                  formErrors={this.state.formErrors}
-                  initialData={this.state.formData}/>
+            <LoginForm handleSubmit={this.handleSubmit}
+                       handleInputChange={this.handleInputChange}
+                       formErrors={this.state.formErrors}
+                       formData={this.state.formData}/>
         )
     }
 }
@@ -94,4 +92,4 @@ export default connect(
     (state) => {
         return {user: state.user}
     }
-)(LoginForm)
+)(LoginFormContainer)

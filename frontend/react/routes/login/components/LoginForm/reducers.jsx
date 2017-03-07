@@ -4,10 +4,9 @@ import {
 } from './actions.jsx';
 
 const initialState = {
-    id: null,
-    token: localStorage.token || null,
+    id: '',
+    token: localStorage.token || '',
     email: localStorage.email || '',
-    userDetails: null
 };
 
 function loginReducer(state = initialState, action) {
@@ -15,7 +14,6 @@ function loginReducer(state = initialState, action) {
         case LOGIN_SUCCESS_RESPONSE:
             return Object.assign({}, state, {
                 id: action.data.id,
-                userDetails: action.data.userDetails,
                 token: action.data.token,
                 email: action.data.email
             });

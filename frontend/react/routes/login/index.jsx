@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {receiveLoginSuccessResponse} from '../../actions/index.jsx';
 import {LoginForm} from './components/index.jsx';
 
 import './styles.scss';
