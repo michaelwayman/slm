@@ -17,10 +17,24 @@ export function dashboardDetailsFailResponse(responseData) {
     }
 }
 
+export const REQUEST_DASHBOARD_DETAILS = 'REQUEST_DASHBOARD_DETAILS';
+export function requestDashboardDetails() {
+    return {
+        type: REQUEST_DASHBOARD_DETAILS,
+    }
+}
+
+export const USER_LOGOUT = 'USER_LOGOUT';
+export function logUserOut() {
+    delete localStorage.token;
+    return {
+        type: USER_LOGOUT,
+    }
+}
+
 export function fetchDashboardDetails(token, successCb, errorCb) {
-    // dispatch(requestOrganizationData());
     return dispatch => {
-        console.log(token);
+        dispatch(requestDashboardDetails());
         fetch('/api/dashboard/', {
             method: 'GET',
             headers: {

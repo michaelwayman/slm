@@ -1,6 +1,5 @@
 import React from 'react';
-import Jumbotron from '../components/jumbotron/index.jsx';
-import {Navigation} from '../components/navigation/index.jsx';
+import {Jumbotron, Navigation} from '../components/index.jsx';
 import {RegistrationForm} from './components/index.jsx';
 
 import './styles.scss';

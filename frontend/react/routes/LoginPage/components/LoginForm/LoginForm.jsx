@@ -4,8 +4,6 @@ import { hashHistory } from 'react-router';
 
 import { logUserIn } from './actions.jsx';
 
-import auth from '../../../../managers/auth.jsx';
-
 class LoginForm extends React.Component {
 
     nonFieldErrors() {
@@ -69,7 +67,6 @@ class LoginFormContainer extends React.Component {
         this.props.dispatch(logUserIn(
             this.state.formData,
             data => {
-                auth.saveTokenData(data.token, data.email);
                 hashHistory.push('/dashboard');
             },
             data => {

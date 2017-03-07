@@ -2,16 +2,20 @@ import React from 'react';
 import { hashHistory, Link } from 'react-router'
 import { connect } from 'react-redux';
 
-import auth from '../../managers/auth.jsx';
-import {NavLink} from '../components/navigation/index.jsx';
+import {NavLink} from '../components/Navigation/index.jsx';
 
-import {fetchDashboardDetails} from './actions.jsx';
+import {
+    fetchDashboardDetails,
+    logUserOut
+} from './actions.jsx';
 
-import AccountPage from './account/index.jsx';
-import OverviewPage from './overview/index.jsx';
-import LicensesPage from './licenses/index.jsx';
-import GroupsPage from './groups/index.jsx';
-import UsersPage from './users/index.jsx';
+import {
+    AccountPage,
+    OverviewPage,
+    LicensesPage,
+    GroupsPage,
+    UsersPage
+} from './routes/index.jsx';
 
 import './styles.scss';
 
@@ -29,10 +33,11 @@ class DashboardPresentation extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div id="dashboard">
                 <nav>
-                    <div className="title"><span>{this.props.userDetails.email}</span></div>
+                    <div className="title"><span>{this.props.user.email}</span></div>
                     <ul>
                         {this.buildMenuItems()}
                     </ul>
@@ -82,14 +87,13 @@ class DashboardA extends React.Component {
 
     handleLogoutClick(e) {
         e.preventDefault();
-        auth.logout(() => {
-            hashHistory.push('/');
-        });
+        this.props.dispatch(logUserOut());
+        hashHistory.push('/');
     }
 
     render() {
         return (
-            <DashboardPresentation menuItems={this.state.menuItems} onLogout={this.handleLogoutClick} userDetails={this.state.userDetails}>
+            <DashboardPresentation menuItems={this.state.menuItems} onLogout={this.handleLogoutClick} user={this.props.user}>
                 {this.props.children}
             </DashboardPresentation>
         )

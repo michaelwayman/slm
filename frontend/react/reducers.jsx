@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import loginReducer from './routes/login/components/LoginForm/reducers.jsx';
-import registrationReducer from './routes/home/components/RegistrationForm/reducers.jsx';
-import dashboardReducer from './routes/dashboard/reducers.jsx';
+import loginReducer from './routes/LoginPage/components/LoginForm/reducers.jsx';
+import registrationReducer from './routes/HomePage/components/RegistrationForm/reducers.jsx';
+
+import dashboardReducer from './routes/Dashboard/reducers.jsx';
+import {USER_LOGOUT} from './routes/Dashboard/actions.jsx';
 
 
 function reduceReducers(...reducers) {
@@ -13,9 +15,16 @@ function reduceReducers(...reducers) {
 }
 
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     dashboard: dashboardReducer,
     user: reduceReducers(loginReducer, registrationReducer)
 });
+
+const rootReducer = (state, action) => {
+    if (action.type === USER_LOGOUT) {
+        state = undefined;
+    }
+    return appReducer(state, action)
+};
 
 export default rootReducer;
