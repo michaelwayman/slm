@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 import './styles.scss';
 
-class NavLink extends React.Component {
+export class NavLink extends React.Component {
     render() {
         let isActive = this.context.router.isActive(this.props.to, true);
         let className = isActive ? "active" : "";
@@ -47,4 +47,4 @@ class Navigation extends React.Component {
     }
 }
 
-export {Navigation, NavLink}
+export default Navigation

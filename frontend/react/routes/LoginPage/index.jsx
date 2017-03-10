@@ -12,7 +12,6 @@ class LoginPage extends React.Component {
     }
 
     render() {
-
         return (
             <section id="loginPage">
                 <div className="logo"></div>

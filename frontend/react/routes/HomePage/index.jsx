@@ -14,7 +14,7 @@ class HomePage extends React.Component {
                 <Jumbotron id="homeJumbo">
                     <div className="container row">
                         <div className="col-7">
-                            <h1>Software Licenses. Management. Easy.</h1>
+                            <h2>Software, licenses and subscriptions.</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt ut labore et dolore magna
