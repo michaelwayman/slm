@@ -15,35 +15,9 @@
 
 }
 
+.imageSection {
 
-.fooBar {
-  text-align: center;
-
-  .iconTitle {
-    h5 {
-      padding-top: 12px;
-    }
+  img {
+    width: 340px;
   }
-
-  h2 {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  > p {
-    margin: 0 auto;
-    width: 700px;
-    text-align: center;
-  }
-
-  .link {
-    padding-top: 16px;
-
-  }
-
-  .button {
-    padding-top: 32px;
-    margin: 0 auto;
-  }
-
 }

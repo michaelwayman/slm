@@ -5,12 +5,12 @@ import './styles.scss';
 class Jumbotron extends React.Component {
     render() {
         return (
-            <footer className="sectionPad">
-                <div className="container">
+            <footer className="padY-64">
+                <div className="container pageWidth">
                     <div className="row">
                         <div className="col-2">
                             <h4>SLM</h4>
-                            <span className="copyright">© 2017</span>
+                            <span className="font-12">© 2017</span>
                         </div>
                         <div className="col-2">
                             <h4>Features</h4>
@@ -19,7 +19,7 @@ class Jumbotron extends React.Component {
                                 <li><a href="#">Software</a></li>
                                 <li><a href="#">Subscriptions</a></li>
                                 <li><a href="#">Management</a></li>
-                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Analytics</a></li>
                             </ul>
                         </div>
                         <div className="col-2">

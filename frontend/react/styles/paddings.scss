@@ -1,0 +1,6 @@
+
+@each $i in 0, 8, 16, 24, 32, 48, 64, 96 {
+  .padY-#{$i} { padding-top: $i * 1px; padding-bottom: $i * 1px; }
+  .padTop-#{$i} { padding-top: $i * 1px; }
+  .padBottom-#{i} { padding-bottom: $i * 1px; }
+}
