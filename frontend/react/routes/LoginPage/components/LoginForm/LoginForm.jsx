@@ -16,22 +16,35 @@ class LoginForm extends React.Component {
         });
     }
 
+    getInputClassName(name) {
+        const classes = ['inputControl'];
+        if (!!this.props.formErrors[name]) classes.push('error');
+        return classes.join(' ')
+    }
+
+    fieldError(name) {
+        const error = this.props.formErrors[name];
+        return error && <div className="formError"><span>{error}</span></div>
+    }
+
     render() {
         return (
             <form className="form inline" onSubmit={this.props.handleSubmit}>
                 {this.props.formErrors.non_field_errors && this.nonFieldErrors()}
-                <input className="inputControl"
+                <input className={this.getInputClassName('username')}
                        type="text"
                        name="username"
                        placeholder="username"
                        value={this.props.formData.username || ''}
                        onChange={this.props.handleInputChange}/>
-                <input className="inputControl"
+                {this.fieldError('username')}
+                <input className={this.getInputClassName('password')}
                        type="password"
                        name="password"
                        placeholder="password"
                        onChange={this.props.handleInputChange}/>
-                <button className="btn" type="submit">Sign in</button>
+                {this.fieldError('password')}
+                <button className="btn btnGreen" type="submit">Sign in</button>
             </form>
         )
     }

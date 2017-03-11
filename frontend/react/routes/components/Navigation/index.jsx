@@ -32,14 +32,14 @@ class Navigation extends React.Component {
 
         return (
             <section className="nav">
-                <div className="container">
+                <div className="container pageWidth">
                     <nav className="navLinks">
                         <a href="#">Features</a>
                         <a href="#">Explore</a>
                         <a href="#">Pricing</a>
                     </nav>
                     <section className="actions">
-                        <Link to="/login">Sign in</Link> or <a href="#">Sign up</a>
+                        <Link to="/login">Sign in</Link> or <Link to="/register">Sign up</Link>
                     </section>
                 </div>
             </section>

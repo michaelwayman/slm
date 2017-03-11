@@ -4,8 +4,6 @@
   width: 100%;
 
   .container {
-    margin: 0 auto;
-    max-width: 1024px;
     padding-top: 16px;
     padding-bottom: 16px;
 
@@ -26,12 +24,12 @@
     float: left;
 
     a {
-      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 
   .actions {
-    color: #586069;
+    color: #686868;
     float: right;
 
     a {
@@ -50,6 +48,5 @@
     padding-top: 9px;
     padding-bottom: 9px;
     position: relative;
-    text-decoration: none;
   }
 }

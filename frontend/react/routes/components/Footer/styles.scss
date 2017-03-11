@@ -1,0 +1,21 @@
+footer {
+  border-top: 1px solid lightgray;
+
+  > .container {
+    margin: 0 auto;
+    width: 1024px;
+
+    li {
+      padding-top: 8px;
+
+      a {
+        font-size: 14px;
+        color: gray;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+}

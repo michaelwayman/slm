@@ -11,27 +11,8 @@
     width: 340px;
   }
 
-  .login {
-    input {
-      border: 1px solid #d1d5da;
-      border-radius: 3px;
-      outline: none;
-      margin-top: 10px;
-    }
-
-    .btn {
-      border: none;
-      margin-top: 20px;
-    }
-  }
-
   .createAccount {
     text-align: center;
-
-    a {
-      color: #0081A7;
-      text-decoration: none;
-    }
 
     span {
       font-size: 14px;
@@ -45,5 +26,9 @@
     padding-bottom: 24px;
     padding-top: 170px;
     text-align: center;
+  }
+
+  .btn {
+    width: 100%;
   }
 }

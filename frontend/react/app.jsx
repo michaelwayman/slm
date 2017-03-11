@@ -19,7 +19,7 @@ import {
 
 import rootReducer from './reducers.jsx';
 
-import './styles.scss';
+import './styles/styles.scss';
 
 class App extends React.Component {
 

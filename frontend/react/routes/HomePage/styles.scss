@@ -1,26 +1,49 @@
-#homePage {
-
-}
 
 #homeJumbo {
   >.container {
     color: white;
-    margin: 0 auto;
-    width: 1024px;
-  }
-
-  h1 {
-    margin-bottom: 16px;
   }
 
   p {
     color: rgba(255, 255, 255, .7);
-    line-height: 30px;
-    font-size: 20px;
   }
 
   form {
     float: right;
     max-width: 340px;
   }
+
+}
+
+
+.fooBar {
+  text-align: center;
+
+  .iconTitle {
+    h5 {
+      padding-top: 12px;
+    }
+  }
+
+  h2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  > p {
+    margin: 0 auto;
+    width: 700px;
+    text-align: center;
+  }
+
+  .link {
+    padding-top: 16px;
+
+  }
+
+  .button {
+    padding-top: 32px;
+    margin: 0 auto;
+  }
+
 }
