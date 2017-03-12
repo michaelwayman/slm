@@ -14,13 +14,25 @@ class RegistrationPage extends React.Component {
     render() {
         return (
             <section id="registrationPage">
-                <div className="logo"></div>
-                <h3>Create an account.</h3>
-                <div className="boxContainer login">
-                    <RegistrationForm formErrors={this.props.page.formErrors} formData={this.props.page.formData} />
+                <div className="row">
+                    <div className="col-12 textCenter">
+                        <h3>Create an account.</h3>
+                    </div>
                 </div>
-                <div className="boxContainer createAccount">
-                    <span>already have an account? <a href="#">Login.</a></span>
+                <div className="boxContainer">
+                    <div className="row">
+                        <div className="col-12">
+                            <RegistrationForm formErrors={this.props.page.formErrors}
+                                              formData={this.props.page.formData} />
+                        </div>
+                    </div>
+                </div>
+                <div className="boxContainer">
+                    <div className="row">
+                        <div className="col-12 textCenter">
+                            <span>already have an account? <a href="#">Login.</a></span>
+                        </div>
+                    </div>
                 </div>
             </section>
         )

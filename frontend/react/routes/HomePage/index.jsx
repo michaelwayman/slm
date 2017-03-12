@@ -13,12 +13,11 @@ class HomePage extends React.Component {
                 <Navigation/>
                 <Jumbotron id="homeJumbo">
                     <div className="container row pageWidth">
-                        <div className="col-7">
-                            <h2>Software. Licenses. Subscription management.</h2>
-                            <p className="font-20">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
+                        <div className="col-7 padTop-48">
+                            <h2>Built for technology companies.</h2>
+                            <p className="font-20 padTop-12">
+                                SLM is a software management platform for the technologies you use.
+                                Manage your subscriptions and licenses from a single place to give your teams the tools they need.
                             </p>
                         </div>
                         <div className="col-5">
@@ -31,18 +30,16 @@ class HomePage extends React.Component {
                     <div className="row">
                         <div className="col-12 textCenter">
                             <i className="fa fa-id-card-o fa-4x"/>
-                            <h5 className="padTop-8">License management for businesses</h5>
+                            <h5 className="padTop-8">Software management for businesses</h5>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 textCenter">
                             <h2 className="padTop-16">A better way to manage software</h2>
                             <p className="padTop-8 mSectionWidth font-20">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
+                                SLM brings your software, subscriptions and licenses into one place.
                             </p>
-                            <div className="padTop-16"><a href="#">See how businesses manage their licenses</a></div>
+                            <div className="padTop-16"><a href="#">See how businesses manage their software</a></div>
                         </div>
                     </div>
                     <div className="row padTop-32">
@@ -56,11 +53,10 @@ class HomePage extends React.Component {
                     <div className="row">
                         <div className="col-6">
                             <div className="padTop-96">
-                                <h4>Save time and money</h4>
-                                <p className="font-16">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam.
+                                <h4>Your software in one place</h4>
+                                <p className="font-16 padTop-8">
+                                    Give teams the software they need with a single click.
+                                    Find the best solutions for your company.
                                 </p>
                             </div>
                         </div>
@@ -77,11 +73,10 @@ class HomePage extends React.Component {
                         </div>
                         <div className="col-6">
                             <div className="padTop-96">
-                                <h4>Save time and money</h4>
-                                <p className="font-16">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam.
+                                <h4>Manage the chaos</h4>
+                                <p className="font-16 padTop-8">
+                                    Make sure your licenses and subscription don't expire.
+                                    Deactivate accounts you no longer use.
                                 </p>
                             </div>
                         </div>

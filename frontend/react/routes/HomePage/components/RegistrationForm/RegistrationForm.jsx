@@ -20,7 +20,7 @@ class Form extends React.Component {
     }
 
     getInputClassName(name) {
-        const classes = ['inputControl'];
+        const classes = ['inputControl', 'marginTop-12'];
         if (!!this.props.formErrors[name]) classes.push('error');
         return classes.join(' ')
     }
@@ -56,11 +56,23 @@ class Form extends React.Component {
                            value={this.props.formData.again}
                            onChange={this.props.handleInputChange}/>
                     {this.fieldError('again')}
-                    <button className="btn btnGreen" type="submit">Sign up for SLM</button>
+                    <div className="row">
+                        <div className="col-12">
+                            <p className="font-12 textCenter">
+                                Use at least one letter, one numeral, and seven characters.
+                            </p>
+                        </div>
+                    </div>
+                    <button className="btn btnGreen marginTop-16" type="submit">Sign up for SLM</button>
                 </form>
-                <p>
-                    By clicking "Sign up for SLM", you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>. We’ll occasionally send you account related emails.
-                </p>
+                <div className="row">
+                    <div className="col-12">
+                        <p className="font-12 textCenter">
+                            By clicking "Sign up for SLM", you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.
+                            We’ll occasionally send you account related emails.
+                        </p>
+                    </div>
+                </div>
             </div>
         );
     }

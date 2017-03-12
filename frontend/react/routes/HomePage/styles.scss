@@ -2,15 +2,20 @@
 #homeJumbo {
   >.container {
     color: white;
+
+    a {
+      color: white;
+    }
   }
 
   p {
     color: rgba(255, 255, 255, .7);
+    font-weight: 300;
   }
 
-  form {
+  #registrationForm {
+    width: 340px;
     float: right;
-    max-width: 340px;
   }
 
 }

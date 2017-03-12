@@ -26,16 +26,14 @@ h5 {
   font-size: 18px;
 }
 
-p {
-  //line-height: 30px;
-}
-
-
 a {
   color: #0016D4;
   text-decoration: none;
 }
 
 @each $i in 8, 12, 14, 16, 20, 24 {
-  .font-#{$i} { font-size: $i * 1px; line-height: $i + 12px;}
+  .font-#{$i} {
+    font-size: $i * 1px;
+    line-height: $i / 2 * 3px;
+  }
 }
