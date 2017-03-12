@@ -16,8 +16,18 @@
   #registrationForm {
     width: 340px;
     float: right;
+
+    p {
+      color: rgba(255, 255, 255, 0.3);
+    }
   }
 
+}
+
+.iconSection {
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .imageSection {

@@ -36,7 +36,7 @@ class Navigation extends React.Component {
                     <nav className="navLinks">
                         <a href="#">Features</a>
                         <a href="#">Explore</a>
-                        <a href="#">Pricing</a>
+                        <Link to="/pricing">Pricing</Link>
                     </nav>
                     <section className="actions">
                         <Link to="/login">Sign in</Link> or <Link to="/register">Sign up</Link>

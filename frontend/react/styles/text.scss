@@ -6,7 +6,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 64px;
-  margin-bottom: 24px;
 }
 
 h2 {
@@ -19,7 +18,6 @@ h3 {
 
 h4 {
   font-size: 24px;
-  font-weight: 400;
 }
 
 h5 {
@@ -36,4 +34,22 @@ a {
     font-size: $i * 1px;
     line-height: $i / 2 * 3px;
   }
+}
+
+@each $i in 200, 400, 500, 600, 800 {
+  .fontWeight-#{$i} {
+    font-weight: $i;
+  }
+}
+
+.fontBlue {
+  color: #0016D4;
+}
+
+.fontGreen {
+  color: #28a745;
+}
+
+.fontPurple {
+  color: indigo;
 }
