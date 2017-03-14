@@ -24,7 +24,6 @@ class Jumbotron extends React.Component {
                             <h4>Partners</h4>
                             <ul>
                                 <li><a href="#">Partner with us</a></li>
-                                <li><a href="#">Terms</a></li>
                             </ul>
                         </div>
                         <div className="col-2">
@@ -32,14 +31,12 @@ class Jumbotron extends React.Component {
                             <ul>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Blog</a></li>
-                                <li><a href="#">Press</a></li>
                             </ul>
                         </div>
                         <div className="col-2">
                             <h4>Resources</h4>
                             <ul>
                                 <li><a href="#">Contact</a></li>
-                                <li><a href="#">Help</a></li>
                                 <li><a href="#">Terms</a></li>
                                 <li><a href="#">Privacy</a></li>
                             </ul>
