@@ -5,6 +5,55 @@ import {RegistrationForm} from './components/index.jsx';
 import './styles.scss';
 
 
+class IconSection extends React.Component {
+    render() {
+        return (
+            <div className="iconSection pageWidth padTop-64">
+                <div className="row">
+                    <div className="col-12 textCenter">
+                        <i className={`fa ${this.props.icon} fa-4x`}/>
+                        <h5 className="padTop-8">{this.props.iconText}</h5>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 textCenter">
+                        <h2 className="padTop-16">{this.props.title}</h2>
+                        <p className="padTop-8 mSectionWidth font-20 fontWeight-300">
+                            {this.props.text}
+                        </p>
+                    </div>
+                </div>
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
+
+class ImageSection extends React.Component {
+    render() {
+        return (
+            <div className="imageSection pageWidth padTop-64">
+                <div className="row">
+                    <div className="col-6">
+                        <div className="padTop-96">
+                            <h4>Your software in one place</h4>
+                            <p className="font-16 padTop-8">
+                                Give teams the software they need with a single click.
+                                Find the best solutions for your company.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="col-6 textCenter">
+                        <img src={`${this.props.image}`} />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+
 class HomePage extends React.Component {
 
     render() {
@@ -26,28 +75,19 @@ class HomePage extends React.Component {
                     </div>
                 </Jumbotron>
 
-                <div className="iconSection pageWidth padTop-64">
-                    <div className="row">
-                        <div className="col-12 textCenter">
-                            <i className="fa fa-id-card-o fa-4x"/>
-                            <h5 className="padTop-8">Software management for businesses</h5>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 textCenter">
-                            <h2 className="padTop-16">A better way to manage software</h2>
-                            <p className="padTop-8 mSectionWidth font-20">
-                                SLM brings your software, subscriptions and licenses into one place.
-                            </p>
-                            <div className="padTop-16"><a href="#">See how businesses manage their software</a></div>
-                        </div>
+                <IconSection icon="fa-id-card-o"
+                             iconText="Software management for business"
+                             title="A better way to manage software"
+                             text="SLM brings your software, subscriptions and licenses into one place.">
+                    <div className="row padTop-16">
+                        <div className="col-12 textCenter"><a href="#">See how businesses manage their software</a></div>
                     </div>
                     <div className="row padTop-32">
                         <div className="col-12 textCenter">
                             <button className="btn btnBlue">Sign up your business</button>
                         </div>
                     </div>
-                </div>
+                </IconSection>
 
                 <div className="imageSection pageWidth padTop-64">
                     <div className="row">

@@ -25,6 +25,16 @@
 
     a {
       margin-right: 20px;
+
+      &.active:after {
+        content: '';
+        left: -5%;
+        bottom: 0;
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        background-color: red;
+      }
     }
   }
 
