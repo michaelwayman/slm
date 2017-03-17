@@ -1,6 +1,6 @@
 ## Installation
 
- 1. `pip install -r requirements.txt`
+ 1. `pip install -r requires.txt`
 
 ## Running
 

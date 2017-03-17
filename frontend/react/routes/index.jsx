@@ -3,6 +3,7 @@ import Dashboard from './Dashboard/index.jsx';
 import LoginPage from './LoginPage/index.jsx';
 import RegistrationPage from './RegistrationPage/index.jsx';
 import PricingPage from './PricingPage/index.jsx';
+import FeaturesPage from './FeaturesPage/index.jsx';
 
 export {
     HomePage,
@@ -10,4 +11,5 @@ export {
     LoginPage,
     RegistrationPage,
     PricingPage,
+    FeaturesPage,
 }

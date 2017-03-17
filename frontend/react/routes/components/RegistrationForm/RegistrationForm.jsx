@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 import { registerUser } from './actions.jsx';
-import { setPageState } from '../../../../actions.jsx';
+import { setPageState } from '../../../actions.jsx';
 
 import './styles.scss';
 

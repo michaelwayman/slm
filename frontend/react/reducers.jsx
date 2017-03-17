@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import loginReducer from './routes/LoginPage/components/LoginForm/reducers.jsx';
-import registrationReducer from './routes/HomePage/components/RegistrationForm/reducers.jsx';
+import registrationReducer from './routes/components/RegistrationForm/reducers.jsx';
 
 import {SET_PAGE_STATE} from './actions.jsx';
 
