@@ -35,8 +35,8 @@ class Navigation extends React.Component {
                 <div className="container pageWidth">
                     <nav className="navLinks">
                         <Link to="/">SLM</Link>
-                        <a href="#">Features</a>
-                        <a href="#">Explore</a>
+                        <Link to="/features" onlyActiveOnIndex={true} activeClassName="active">Features</Link>
+                        <a href="#">Discover</a>
                         <Link to="/pricing" onlyActiveOnIndex={true} activeClassName="active">Pricing</Link>
                     </nav>
                     <section className="actions">

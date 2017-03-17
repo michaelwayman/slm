@@ -15,9 +15,10 @@ class Jumbotron extends React.Component {
                         <div className="col-2">
                             <h4>Features</h4>
                             <ul>
-                                <li><a href="#">Software</a></li>
+                                <li><a href="#">Discovery</a></li>
                                 <li><a href="#">Management</a></li>
                                 <li><a href="#">Analytics</a></li>
+                                <li><a href="#">Subscriptions</a></li>
                             </ul>
                         </div>
                         <div className="col-2">
