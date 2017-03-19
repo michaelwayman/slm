@@ -100,7 +100,7 @@ class HomePage extends React.Component {
                             </div>
                         </div>
                         <div className="col-6 textCenter">
-                            <img src="images/img1.svg" />
+                            <img src="images/img2.svg" />
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ class HomePage extends React.Component {
                 <div className="imageSection pageWidth padY-64">
                     <div className="row">
                         <div className="col-6 textCenter">
-                            <img src="images/img1.svg" />
+                            <img src="images/img2.svg" />
                         </div>
                         <div className="col-6">
                             <div className="padTop-96">

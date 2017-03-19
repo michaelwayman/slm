@@ -18,7 +18,6 @@ export function registrationFailResponse(responseData) {
 }
 
 export function registerUser(formData, successCb, errorCb) {
-    // dispatch(requestOrganizationData());
     return dispatch => {
         fetch('/api/users/', {
             method: 'POST',
