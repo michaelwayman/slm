@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RegistrationForm } from '../HomePage/components/index.jsx';
+import { RegistrationForm } from '../components/index.jsx';
 import { setPageState } from '../../actions.jsx';
 
 import './styles.scss';

@@ -9,6 +9,14 @@ import dashboardReducer from './routes/Dashboard/reducers.jsx';
 import {USER_LOGOUT} from './routes/Dashboard/actions.jsx';
 
 
+function reduceReducers(...reducers) {
+  return (previous, current) =>
+    reducers.reduce(
+      (p, r) => r(p, current), previous
+    );
+}
+
+
 function pageReducer(state = {}, action) {
     switch (action.type) {
         case SET_PAGE_STATE:
@@ -19,13 +27,6 @@ function pageReducer(state = {}, action) {
     }
 }
 
-function reduceReducers(...reducers) {
-  return (previous, current) =>
-    reducers.reduce(
-      (p, r) => r(p, current), previous
-    );
-}
-
 
 const appReducer = combineReducers({
     dashboard: dashboardReducer,
@@ -33,11 +34,13 @@ const appReducer = combineReducers({
     page: pageReducer
 });
 
+
 const rootReducer = (state, action) => {
     if (action.type === USER_LOGOUT) {
         state = undefined;
     }
     return appReducer(state, action)
 };
+
 
 export default rootReducer;

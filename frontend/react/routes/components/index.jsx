@@ -3,4 +3,9 @@ import Navigation from './Navigation/index.jsx';
 import Footer from './Footer/index.jsx';
 import RegistrationForm from './RegistrationForm/index.jsx'
 
-export {Jumbotron, Navigation, Footer, RegistrationForm}
+export {
+    Footer,
+    Jumbotron,
+    Navigation,
+    RegistrationForm,
+}

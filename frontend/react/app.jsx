@@ -20,11 +20,12 @@ import {
 } from './routes/index.jsx';
 
 import rootReducer from './reducers.jsx';
+import {authorizedRedirect, requireAuthorization} from './auth.jsx';
 
 import './styles/styles.scss';
 
-class App extends React.Component {
 
+class App extends React.Component {
     render() {
         return (
             <div id="app">
@@ -34,21 +35,10 @@ class App extends React.Component {
     }
 }
 
-function loggedIn() {
-    return !!localStorage.token
-}
-function requireAuthorization(nextState, replace) {
-    if (!loggedIn()) replace({pathname:'/login', state: {nextPathname: '/dashboard'}})
-}
-function authorizedRedirect(nextState, replace) {
-    if (loggedIn()) replace({pathname:'/dashboard', state: {nextPathname: '/'}})
-}
 
-const logger = createLogger({collapsed: true});  // logs redux actions if *last* in middleware
-const store = createStore(
-    rootReducer,
-    applyMiddleware(thunkMiddleware, logger)
-);
+const logger = createLogger({collapsed: true});  // logs redux actions
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+
 
 ReactDOM.render(
     <Provider store={store}>
