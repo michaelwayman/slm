@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'organizations.apps.OrganizationsConfig',
     'licenses.apps.LicensesConfig',
     'groups.apps.GroupsConfig',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [

@@ -10,3 +10,6 @@ class DashboardSerializer(serializers.Serializer):
     groups = GroupsListSerializer(many=True)
     licenses = LicensesListSerializer(many=True)
     # account = ''
+
+
+# class ContactSerializer(serializers.Serializer):

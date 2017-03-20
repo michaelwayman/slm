@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from dashboard.serializers import DashboardSerializer
+from api.serializers import DashboardSerializer
 from groups.models import Group
 from licenses.models import License
 from users.models import User

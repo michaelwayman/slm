@@ -36,7 +36,6 @@ class Navigation extends React.Component {
                     <nav className="navLinks">
                         <Link to="/">SLM</Link>
                         <Link to="/features" onlyActiveOnIndex={true} activeClassName="active">Features</Link>
-                        <a href="#">Discover</a>
                         <Link to="/pricing" onlyActiveOnIndex={true} activeClassName="active">Pricing</Link>
                     </nav>
                     <section className="actions">
