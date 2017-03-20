@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 import './styles.scss';
 
@@ -37,7 +38,7 @@ class Jumbotron extends React.Component {
                         <div className="col-2">
                             <h4>Resources</h4>
                             <ul>
-                                <li><a href="#">Contact</a></li>
+                                <li><Link to="/contact">Contact</Link></li>
                                 <li><a href="#">Terms</a></li>
                                 <li><a href="#">Privacy</a></li>
                             </ul>
