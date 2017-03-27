@@ -8,7 +8,7 @@ from rest_framework.reverse import reverse
 
 from .models import User
 from .serializers import (
-    RegisterUserSerializer,
+    CreateUserSerializer,
     UserDetailsSerializer,
 )
 
@@ -28,7 +28,7 @@ class ObtainAuthToken(APIView):
             'email': user.email,
             'userDetails': reverse('user-detail', request=request, kwargs={'pk': user.pk}),
             'id': user.id,
-            'organizationDetails': reverse('organization-detail', request=request, kwargs={'pk': user.organization.pk}),
+            'accountDetails': reverse('account-detail', request=request, kwargs={'pk': user.account.pk}),
         })
 
 
@@ -38,11 +38,8 @@ class UserViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'create':
-            return RegisterUserSerializer
+            return CreateUserSerializer
         elif self.action == 'details':
             return UserDetailsSerializer
         else:
             pass
-
-    def retrieve(self, request, *args, **kwargs):
-        return super(UserViewSet, self).retrieve(request, *args, **kwargs)

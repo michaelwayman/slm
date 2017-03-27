@@ -2,7 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
-import { registerUser } from './actions.jsx';
+import { createAccount } from './actions.jsx';
 import { setPageState } from '../../../actions.jsx';
 
 import './styles.scss';
@@ -103,19 +103,14 @@ class RegistrationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.dispatch(registerUser(
+        this.props.dispatch(createAccount(
             this.state.formData,
             data => {
-                hashHistory.push('/login');
+                hashHistory.push('/register');
             },
             data => {
-                if (hashHistory.getCurrentLocation().pathname !== '/register') {
-                    this.props.dispatch(setPageState({formErrors: data, formData: this.state.formData}));
-                    hashHistory.push('/register');
-                }
-                else {
-                    this.setState({formErrors: data})
-                }
+                this.props.dispatch(setPageState({formErrors: data, formData: this.state.formData}));
+                hashHistory.push('/register');
             }
         ));
     }

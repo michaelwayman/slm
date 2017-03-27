@@ -18,11 +18,13 @@ export function createAccountFailResponse(responseData) {
 }
 
 export function createAccount(formData, successCb, errorCb) {
-    return dispatch => {
-        fetch('/api/users/', {
+    return (dispatch, getState) => {
+        const user = getState().user;
+        fetch(`/api/account/`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${user.token}`
             },
             body: JSON.stringify(formData)
         })

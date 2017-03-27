@@ -17,20 +17,18 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from api.views import DashboardDetails
 from contact.views import ContactViewSet
-from organizations.views import OrganizationViewSet
+from accounts.views import AccountViewSet
 from users.views import UserViewSet, ObtainAuthToken
 
 router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
-router.register(r'organizations', OrganizationViewSet)
+router.register(r'accounts', AccountViewSet)
 router.register(r'contact', ContactViewSet)
 
 
 urlpatterns = [
     url(r'^api/obtain-auth-token/$', ObtainAuthToken.as_view()),
-    url(r'^api/dashboard/$', DashboardDetails.as_view()),
+    url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(router.urls))
 ]

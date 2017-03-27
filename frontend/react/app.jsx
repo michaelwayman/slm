@@ -21,7 +21,6 @@ import {
 } from './routes/index.jsx';
 
 import rootReducer from './reducers.jsx';
-import {authorizedRedirect, requireAuthorization} from './auth.jsx';
 
 import './styles/styles.scss';
 
@@ -45,13 +44,13 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path='/' component={App}>
-                <IndexRoute component={HomePage} onEnter={authorizedRedirect}/>
+                <IndexRoute component={HomePage} />
                 <Route path='/login' component={LoginPage} />
                 <Route path='/register' component={RegistrationPage} />
                 <Route path='/pricing' component={PricingPage} />
                 <Route path='/contact' component={ContactPage} />
                 <Route path='/features' component={FeaturesPage} />
-                <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={requireAuthorization}>
+                <Route path='/dashboard' component={Dashboard.Dashboard} >
                     <IndexRoute component={Dashboard.OverviewPage}/>
                     <Route path='/dashboard/licenses' component={Dashboard.LicensesPage} />
                     <Route path='/dashboard/account' component={Dashboard.AccountPage} />

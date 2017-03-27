@@ -3,12 +3,13 @@ function loggedIn() {
     return !!localStorage.token
 }
 
-function requireAuthorization(nextState, replace) {
-    if (!loggedIn()) replace({pathname:'/login', state: {nextPathname: '/dashboard'}})
+function logOut() {
+    localStorage.clear()
 }
 
-function authorizedRedirect(nextState, replace) {
-    if (loggedIn()) replace({pathname:'/dashboard', state: {nextPathname: '/'}})
+function getToken() {
+    return localStorage.token
 }
 
-export {loggedIn, requireAuthorization, authorizedRedirect}
+
+export {loggedIn, logOut, getToken}

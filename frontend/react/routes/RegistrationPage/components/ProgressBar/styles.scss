@@ -1,0 +1,28 @@
+.progressBar {
+  background-color: #eeeeee;
+  border: 1px solid rgba(0, 0, 0, .1);
+
+  > .row {
+    > div {
+      border-left: 1px solid rgba(0, 0, 0, .1);
+
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+
+  .progressItem {
+    color: #bbbbbb;
+
+    .title {
+      font-weight: bold;
+    }
+
+    &.active {
+      background-color: #f9f9f9;
+      color: initial;
+    }
+  }
+
+}
