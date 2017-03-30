@@ -29,7 +29,7 @@ export function createAccount(formData, successCb, errorCb) {
             body: JSON.stringify(formData)
         })
         .then(response => {
-            if (response.status === 201) {
+            if (response.status === 20) {
                 response.json().then(data => {
                     dispatch(createAccountSuccessResponse(data));
                     successCb(data);

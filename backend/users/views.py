@@ -25,10 +25,7 @@ class ObtainAuthToken(APIView):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'email': user.email,
-            'userDetails': reverse('user-detail', request=request, kwargs={'pk': user.pk}),
             'id': user.id,
-            'accountDetails': reverse('account-detail', request=request, kwargs={'pk': user.account.pk}),
         })
 
 

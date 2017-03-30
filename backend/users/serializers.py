@@ -10,20 +10,16 @@ from .models import User
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('password', 'email')
-        write_only_fields = ('password',)
+        fields = ('password', 'username', 'first_name', 'last_name', 'email',)
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'username': {'required': False}
+        }
 
     email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
 
     def create(self, validated_data):
         user = super(CreateUserSerializer, self).create(validated_data)
-
-        # request_user = self.context['request'].user
-        # if request_user.is_anonymous:
-        #     user.account = Account.objects.create(name='')
-        # else:
-        #     user.account = request_user.account
-
         user.set_password(validated_data['password'])
         user.save()
         Token.objects.create(user=user)
@@ -39,4 +35,4 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email')
+        fields = ('id', 'email', 'username')

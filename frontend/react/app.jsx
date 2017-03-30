@@ -20,7 +20,7 @@ import {
     ContactPage,
 } from './routes/index.jsx';
 
-import rootReducer from './reducers.jsx';
+import rootReducer from './reducers/index.jsx';
 
 import './styles/styles.scss';
 

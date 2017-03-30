@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation, Footer } from '../components/index.jsx';
-import { ProgressBar, CreateAccountForm } from './components/index.jsx';
-import { setPageState } from '../../actions.jsx';
+import { ProgressBar, CreateUserForm } from './components/index.jsx';
 import {loggedIn} from '../../auth.jsx';
 
 import { createAccount } from '../components/index.jsx';
@@ -10,56 +9,34 @@ import { createAccount } from '../components/index.jsx';
 import './styles.scss';
 
 
-function getRegistrationPhase() {
-    if (!loggedIn()) {
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
-
 class RegistrationPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            formData: this.props.page.formData || {},
-            formErrors: this.props.page.formErrors || {}
-        };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
+            activeIndex: this.getRegistrationPhase()
+        }
     }
 
-    componentDidMount() {
-        this.props.dispatch(setPageState({}))
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+        this.setState({
+            activeIndex: this.getRegistrationPhase()
+        })
     }
 
-    handleSubmit(e) {
-        e.prventDefault();
-        this.props.dispatch(createAccount(
-            this.state.formData,
-            data => {
-                if (getRegistrationPhase() === 'COMPLETE') hashHistory.push('/dashboard');
-            },
-            data => {
-                if (hashHistory.getCurrentLocation().pathname !== '/register') {
-                    this.props.dispatch(setPageState({formErrors: data, formData: this.state.formData}));
-                    hashHistory.push('/register');
-                }
-                else {
-                    this.setState({formErrors: data})
-                }
-            }
-        ));
+    getRegistrationPhase() {
+        if (!loggedIn()) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     getRegistrationForm() {
-        switch (getRegistrationPhase()) {
+        switch (this.state.activeIndex) {
             case 0:
-                return <CreateAccountForm formErrors={this.props.page.formErrors}
-                                          formData={this.props.page.formData}
-                                          handleSubmit={this.handleSubmit}/>;
+                return <CreateUserForm formErrors={this.props.page.formErrors}/>;
                 break;
             case 1:
                 break;
@@ -82,7 +59,7 @@ class RegistrationPage extends React.Component {
                 </div>
                 <div className="row pageWidth padTop-64">
                     <div className="col-10">
-                        <ProgressBar activeIndex={getRegistrationPhase()}/>
+                        <ProgressBar activeIndex={this.state.activeIndex}/>
                     </div>
                 </div>
                 <div className="row pageWidth padTop-32 padBottom-64">
@@ -99,6 +76,6 @@ class RegistrationPage extends React.Component {
 
 export default connect(
     (state) => {
-        return state
+        return {page: state.page, user: state.user, account: state.account}
     }
 )(RegistrationPage);
