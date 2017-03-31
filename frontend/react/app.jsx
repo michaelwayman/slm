@@ -18,6 +18,7 @@ import {
     PricingPage,
     FeaturesPage,
     ContactPage,
+    AboutPage,
 } from './routes/index.jsx';
 
 import rootReducer from './reducers.jsx';
@@ -50,6 +51,7 @@ ReactDOM.render(
                 <Route path='/register' component={RegistrationPage} />
                 <Route path='/pricing' component={PricingPage} />
                 <Route path='/contact' component={ContactPage} />
+                <Route path='/about' component={AboutPage} />
                 <Route path='/features' component={FeaturesPage} />
                 <Route path='/dashboard' component={Dashboard.Dashboard} onEnter={requireAuthorization}>
                     <IndexRoute component={Dashboard.OverviewPage}/>
