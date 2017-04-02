@@ -14,7 +14,7 @@ import {
     HomePage,
     Dashboard,
     LoginPage,
-    RegistrationPage,
+    Registration,
     PricingPage,
     FeaturesPage,
     ContactPage,
@@ -46,7 +46,11 @@ ReactDOM.render(
             <Route path='/' component={App}>
                 <IndexRoute component={HomePage} />
                 <Route path='/login' component={LoginPage} />
-                <Route path='/register' component={RegistrationPage} />
+                <Route path='/register' component={Registration.Registration}>
+                    <IndexRoute component={Registration.CreateUserPage}/>
+                    <Route path='/register/plan' component={Registration.ChoosePlanPage} />
+                    <Route path='/register/experience' component={Registration.TailorExperiencePage} />
+                </Route>
                 <Route path='/pricing' component={PricingPage} />
                 <Route path='/contact' component={ContactPage} />
                 <Route path='/features' component={FeaturesPage} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
-import { createUser, setPageFormErrors, loginUser } from '../../../../actions/index.jsx';
+import { createUser, setPageFormErrors, loginUser, getAccountDetails } from '../../../../../../actions/index.jsx';
 
 // import './styles.scss';
 
@@ -122,11 +122,18 @@ class CreateAccountForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.dispatch(createUser(
-            this.state.formData,
+        this.props.dispatch(createUser(this.state.formData,
             data => {
                 this.props.dispatch(setPageFormErrors({}));
-                this.props.dispatch(loginUser(this.state.formData.email, this.state.formData.password));
+                this.props.dispatch(loginUser(this.state.formData,
+                    data => {
+                        this.props.dispatch(getAccountDetails(
+                            data => {
+                                hashHistory.push('/register/plan')
+                            }
+                        ))
+                    }
+                ));
             },
             data => {
                 this.props.dispatch(setPageFormErrors(data));

@@ -1,6 +1,7 @@
 from rest_framework import renderers
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -39,4 +40,4 @@ class UserViewSet(ModelViewSet):
         elif self.action == 'details':
             return UserDetailsSerializer
         else:
-            pass
+            return UserDetailsSerializer
