@@ -31,7 +31,7 @@ class Jumbotron extends React.Component {
                         <div className="col-2">
                             <h4>Company</h4>
                             <ul>
-                                <li><a href="#">About</a></li>
+                                <li><Link to="/about">About</Link></li>
                                 <li><a href="#">Blog</a></li>
                             </ul>
                         </div>

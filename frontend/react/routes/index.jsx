@@ -5,6 +5,7 @@ import PricingPage from './PricingPage/index.jsx';
 import FeaturesPage from './FeaturesPage/index.jsx';
 import ContactPage from './ContactPage/index.jsx';
 import Registration from './Registration/index.jsx';
+import AboutPage from './AboutPage/index.jsx';
 
 export {
     HomePage,
@@ -14,4 +15,5 @@ export {
     FeaturesPage,
     ContactPage,
     Registration,
+    AboutPage,
 }
