@@ -5,3 +5,18 @@
   background-size: cover;
   height: 405px;
 }
+
+.segmentedTableSections {
+
+  .segmentedTableSection {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      box-sizing: border-box;
+
+      margin-left: 8px;
+      margin-right: 8px;
+
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+  }
+}
