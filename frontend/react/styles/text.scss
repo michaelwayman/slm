@@ -29,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-@each $i in 8, 12, 14, 16, 20, 24 {
+@each $i in 8, 10, 12, 14, 16, 20, 24 {
   .font-#{$i} {
     font-size: $i * 1px;
     line-height: $i / 2 * 3px;

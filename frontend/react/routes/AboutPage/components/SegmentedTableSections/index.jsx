@@ -35,8 +35,8 @@ class SegmentedTableSections extends React.Component {
 
     return sections.map((item, index) => {
       return (
-        <div className='col-3'>
-          <SegmentedTableSection key={index} title={item.title}
+        <div className='col-3' key={index}>
+          <SegmentedTableSection title={item.title}
                                  description = {item.description}/>
         </div>
       )

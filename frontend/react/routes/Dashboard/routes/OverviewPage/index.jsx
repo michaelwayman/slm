@@ -9,9 +9,6 @@ class OverviewPresentation extends React.Component {
     render() {
         return (
             <section id="overviewPage">
-                <CountBar/>
-                <Charts.AccountActivityChart/>
-                {/*<Card/>*/}
             </section>
         )
     }

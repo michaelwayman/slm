@@ -11,8 +11,8 @@ class Contact(models.Model):
     subject = models.CharField(max_length=256)
     message = models.TextField()
 
-    read = models.BooleanField(default=False)
+    read = models.BooleanField(default=False, db_index=True)
     read_date = models.DateTimeField(blank=True, null=True)
-    sent_date = models.DateTimeField(auto_now_add=True)
+    received_date = models.DateTimeField(auto_now_add=True)
 
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)  # User who sent the message (if applicable)

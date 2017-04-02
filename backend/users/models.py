@@ -4,4 +4,4 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    organization = models.ForeignKey('organizations.Organization', null=True)
+    account = models.ForeignKey('accounts.Account', null=True)

@@ -1,23 +1,23 @@
 import fetch from 'isomorphic-fetch';
 
 
-export const REGISTRATION_SUCCESS_RESPONSE = 'REGISTRATION_SUCCESS_RESPONSE';
-export function registrationSuccessResponse(responseData) {
+export const CREATE_ACCOUNT_SUCCESS_RESPONSE = 'CREATE_ACCOUNT_SUCCESS_RESPONSE';
+export function createAccountSuccessResponse(responseData) {
     return {
-        type: REGISTRATION_SUCCESS_RESPONSE,
+        type: CREATE_ACCOUNT_SUCCESS_RESPONSE,
         data: responseData
     }
 }
 
-export const REGISTRATION_FAIL_RESPONSE = 'REGISTRATION_FAIL_RESPONSE';
-export function registrationFailResponse(responseData) {
+export const CREATE_ACCOUNT_FAIL_RESPONSE = 'CREATE_ACCOUNT_FAIL_RESPONSE';
+export function createAccountFailResponse(responseData) {
     return {
-        type: REGISTRATION_FAIL_RESPONSE,
+        type: CREATE_ACCOUNT_FAIL_RESPONSE,
         data: responseData
     }
 }
 
-export function registerUser(formData, successCb, errorCb) {
+export function createAccount(formData, successCb, errorCb) {
     return dispatch => {
         fetch('/api/users/', {
             method: 'POST',
@@ -27,15 +27,15 @@ export function registerUser(formData, successCb, errorCb) {
             body: JSON.stringify(formData)
         })
         .then(response => {
-            if (response.status == 201) {
+            if (response.status === 201) {
                 response.json().then(data => {
-                    dispatch(registrationSuccessResponse(data));
+                    dispatch(createAccountSuccessResponse(data));
                     successCb(data);
                 });
             }
-            else if (response.status == 400) {
+            else if (response.status === 400) {
                 response.json().then(data => {
-                    dispatch(registrationFailResponse(data));
+                    dispatch(createAccountFailResponse(data));
                     errorCb(data)
                 });
             }

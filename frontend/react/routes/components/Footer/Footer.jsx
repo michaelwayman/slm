@@ -19,7 +19,7 @@ class Jumbotron extends React.Component {
                                 <li><a href="#">Discovery</a></li>
                                 <li><a href="#">Management</a></li>
                                 <li><a href="#">Analytics</a></li>
-                                <li><a href="#">Subscriptions</a></li>
+                                <li><a href="#">Solutions</a></li>
                             </ul>
                         </div>
                         <div className="col-2">
@@ -41,6 +41,7 @@ class Jumbotron extends React.Component {
                                 <li><Link to="/contact">Contact</Link></li>
                                 <li><a href="#">Terms</a></li>
                                 <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Help</a></li>
                             </ul>
                         </div>
                     </div>
