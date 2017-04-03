@@ -1,0 +1,22 @@
+.inlineRadio {
+  //position: relative;
+
+  label {
+    border: 1px solid #e0e0e0;
+    border-top: 0;
+    display: block;
+    position: relative;
+    padding-left: 32px;
+
+    &:nth-child(1) {
+      //background-color: white;
+      border-top: 1px solid #e0e0e0;
+    }
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    left: 8px;
+    top: 18px;
+  }
+}

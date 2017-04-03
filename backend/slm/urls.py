@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 
 from api.views import DashboardDetails
+from blog.views import BlogCommentViewSet, BlogPostViewSet
 from contact.views import ContactViewSet
 from organizations.views import OrganizationViewSet
 from users.views import UserViewSet, ObtainAuthToken
@@ -26,6 +27,8 @@ router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
 router.register(r'organizations', OrganizationViewSet)
 router.register(r'contact', ContactViewSet)
+router.register(r'blog/posts', BlogPostViewSet)
+router.register(r'blog/comments', BlogCommentViewSet)
 
 
 urlpatterns = [

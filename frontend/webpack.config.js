@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
      
  module.exports = {
-     entry: './react/app.jsx',
+     entry: './src/App.js',
      output: {
          path: path.resolve(__dirname, './react/'),
          filename: 'app.bundle.js'
@@ -10,7 +10,7 @@ var webpack = require('webpack');
      module: {
          loaders: [
              {
-                 test: /\.jsx$/,
+                 test: /\.js$/,
                  loader: 'babel-loader',
                  query: {
                      presets: ['es2015', 'react']
@@ -28,14 +28,6 @@ var webpack = require('webpack');
      },
      stats: {
          colors: true
-     },
-     devServer: {
-         proxy: {
-             '/api/**': {
-                 target: 'http://localhost:8000/',
-                 secure: false
-             }
-         }
      },
      devtool: 'source-map'
  };
