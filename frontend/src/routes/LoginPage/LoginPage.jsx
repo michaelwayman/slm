@@ -1,7 +1,7 @@
 import React from 'react';
 import {LoginForm} from './components/index.jsx';
 
-import './styles.scss';
+import './styles.css';
 
 class LoginPage extends React.Component {
 

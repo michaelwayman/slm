@@ -1,0 +1,22 @@
+.priceTiers {
+  .priceTier {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    margin-left: 8px;
+    margin-right: 8px;
+
+    .header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+      height: 300px;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+  }
+}

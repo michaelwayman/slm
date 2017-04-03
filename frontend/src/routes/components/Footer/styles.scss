@@ -1,0 +1,19 @@
+footer {
+  border-top: 1px solid lightgray;
+
+  .container {
+
+    li {
+      padding-top: 8px;
+
+      a {
+        font-size: 14px;
+        color: gray;
+
+        &:hover {
+          color: #0016D4;
+        }
+      }
+    }
+  }
+}

@@ -42,7 +42,7 @@ class ProgressBar extends React.Component {
                     <ProgressItem title={item.title}
                                   description={item.description}
                                   icon={item.icon}
-                                  active={this.props.activeIndex == index}/>
+                                  active={this.props.activeIndex === index}/>
                 </div>
             )
         })

@@ -1,0 +1,17 @@
+.card {
+  background-color: white;
+  margin-top: 16px;
+  padding: 16px;
+  width: 30%;
+  //height: 200px;
+
+  .header {
+    > .title {
+      border-bottom: 1px solid gray;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      h3 {font-weight: 500;}
+    }
+  }
+}

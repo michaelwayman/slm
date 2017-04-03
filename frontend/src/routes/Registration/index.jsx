@@ -5,7 +5,6 @@ import {
     TailorExperiencePage
 } from './routes/index.jsx';
 
-
 export default {
     Registration,
     ChoosePlanPage,

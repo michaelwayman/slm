@@ -1,6 +1,4 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
-import { connect } from 'react-redux';
 
 import { updateAccount } from '../../../../../../actions/index.jsx';
 
