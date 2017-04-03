@@ -1,4 +1,4 @@
-const BASE_BLOG_URL = 'http://localhost:8000/api/blog/';
+const BASE_BLOG_URL = '/api/blog/';
 const BLOG_POST_URL = BASE_BLOG_URL + 'posts';
 const BLOG_COMMENT_URL = BASE_BLOG_URL + 'comments';
 
