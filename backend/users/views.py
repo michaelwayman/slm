@@ -1,6 +1,7 @@
 from rest_framework import renderers
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -8,7 +9,7 @@ from rest_framework.reverse import reverse
 
 from .models import User
 from .serializers import (
-    RegisterUserSerializer,
+    CreateUserSerializer,
     UserDetailsSerializer,
 )
 
@@ -25,10 +26,7 @@ class ObtainAuthToken(APIView):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'email': user.email,
-            'userDetails': reverse('user-detail', request=request, kwargs={'pk': user.pk}),
             'id': user.id,
-            'organizationDetails': reverse('organization-detail', request=request, kwargs={'pk': user.organization.pk}),
         })
 
 
@@ -38,11 +36,8 @@ class UserViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'create':
-            return RegisterUserSerializer
+            return CreateUserSerializer
         elif self.action == 'details':
             return UserDetailsSerializer
         else:
-            pass
-
-    def retrieve(self, request, *args, **kwargs):
-        return super(UserViewSet, self).retrieve(request, *args, **kwargs)
+            return UserDetailsSerializer

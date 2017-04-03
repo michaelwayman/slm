@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
+
+    # slm apps
     'users.apps.UsersConfig',
-    'organizations.apps.OrganizationsConfig',
-    'licenses.apps.LicensesConfig',
-    'groups.apps.GroupsConfig',
+    'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
     'blog.apps.BlogConfig'
 ]

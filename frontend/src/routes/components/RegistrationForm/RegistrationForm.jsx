@@ -3,8 +3,8 @@ import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 import { createAccount } from './actions.jsx';
-import { setPageState } from '../../../actions/page.jsx';
 
+import { setPageState } from '../../../actions/page.jsx';
 import './styles.css';
 
 class Form extends React.Component {

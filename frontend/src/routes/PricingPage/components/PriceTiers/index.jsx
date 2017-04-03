@@ -66,8 +66,8 @@ class PriceTiers extends React.Component {
 
         return priceTiers.map((item, index) => {
             return (
-                <div className="col-3">
-                    <PriceTier key={index} title={item.title}
+                <div key={index} className="col-3">
+                    <PriceTier title={item.title}
                                price={item.price} includeOptions={item.includeOptions}
                                colorClass={item.colorClass}/>
                 </div>

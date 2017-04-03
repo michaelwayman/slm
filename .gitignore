@@ -13,3 +13,4 @@ app.bundle.js
 app.bundle.js.map
 local_settings.py
 
+migrations/

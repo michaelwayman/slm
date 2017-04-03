@@ -54,7 +54,6 @@ class App extends React.Component {
                     <Route path='/contact' component={ContactPage} />
                     <Route path='/features' component={FeaturesPage} />
                     <Route path='/login' component={LoginPage} />
-                    {/*<Route path='/register' component={RegistrationPage} />*/}
                 </div>
                 </BrowserRouter>
             </Provider>
