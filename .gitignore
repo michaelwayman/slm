@@ -11,3 +11,6 @@ node_modules/
 *.css.map
 app.bundle.js
 app.bundle.js.map
+local_settings.py
+
+migrations/

@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
+
+from blog.views import BlogCommentViewSet, BlogPostViewSet
 from contact.views import ContactViewSet
 from accounts.views import AccountViewSet
 from users.views import UserViewSet, ObtainAuthToken
@@ -25,6 +27,8 @@ router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
 router.register(r'accounts', AccountViewSet)
 router.register(r'contact', ContactViewSet)
+router.register(r'blog/posts', BlogPostViewSet)
+router.register(r'blog/comments', BlogCommentViewSet)
 
 
 urlpatterns = [
