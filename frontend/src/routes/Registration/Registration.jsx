@@ -1,26 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation, Footer } from '../components/index.jsx';
-
+import { CreateUserPage, ChoosePlanPage, TailorExperiencePage } from './routes/index.jsx'
+import { Route } from 'react-router-dom'
 import './styles.css';
 
 
-class Registration extends React.Component {
+class RegistrationContainer extends React.Component {
 
     render() {
         return (
             <section id="registrationPage">
                 <Navigation/>
-                {this.props.children}
+                <Route exact path='/register' component={CreateUserPage}/>
+                <Route path='/register/plan' component={ChoosePlanPage} />
+                <Route path='/register/experience' component={TailorExperiencePage} />
                 <Footer/>
             </section>
         )
     }
 }
 
-
-export default connect(
+const Registration = connect(
     (state) => {
         return {page: state.page, user: state.user, account: state.account}
     }
-)(Registration);
+)(RegistrationContainer);
+
+export {Registration};

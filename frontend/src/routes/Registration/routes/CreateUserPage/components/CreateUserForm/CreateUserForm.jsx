@@ -119,6 +119,7 @@ class CreateAccountForm extends React.Component {
         });
     }
 
+
     handleSubmit(e) {
         e.preventDefault();
         this.props.dispatch(createUser(this.state.formData,
@@ -128,7 +129,7 @@ class CreateAccountForm extends React.Component {
                     data => {
                         this.props.dispatch(getAccountDetails(
                             data => {
-                                this.props.successfulSubmit();
+                                this.props.handleSuccess()
                             }
                         ))
                     }

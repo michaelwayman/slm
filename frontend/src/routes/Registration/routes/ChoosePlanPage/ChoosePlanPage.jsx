@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Navigation, Footer } from '../../../components/index.jsx';
 import {ProgressBar} from '../../components/index.jsx';
 
 import {ChoosePlanForm} from './components/index.jsx';
@@ -12,7 +11,6 @@ class ChoosePlanPage extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
                 <div className="row pageWidth padTop-64">
                     <div className="col-12">
                         <h1>Sign up with us.</h1>
@@ -28,7 +26,6 @@ class ChoosePlanPage extends React.Component {
                         <ChoosePlanForm formErrors={this.props.page.formErrors}/>
                     </div>
                 </div>
-                <Footer/>
             </div>
         )
     }

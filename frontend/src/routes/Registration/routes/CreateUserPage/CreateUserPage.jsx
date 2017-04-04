@@ -1,28 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Navigation, Footer } from '../../../components/index.jsx';
 import {ProgressBar} from '../../components/index.jsx';
 
 import {CreateUserForm} from './components/index.jsx';
 
 import './styles.css';
 
-class CreateUserPage extends React.Component {
+class CreateUserPageChild extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.successfulSubmit = this.successfulSubmit.bind(this);
-    }
-
-    successfulSubmit() {
-        this.props.history.push('/register/plan');
-    }
+    handleSuccess = () => {
+      this.props.history.push('/register/plan')
+    };
 
     render() {
         return (
             <div>
-                <Navigation/>
                 <div className="row pageWidth padTop-64">
                     <div className="col-12">
                         <h1>Sign up with us.</h1>
@@ -35,19 +28,18 @@ class CreateUserPage extends React.Component {
                 </div>
                 <div className="row pageWidth padTop-32 padBottom-64">
                     <div className="col-6">
-                        <CreateUserForm formErrors={this.props.page.formErrors}
-                                        successfulSubmit={this.successfulSubmit}/>
+                        <CreateUserForm formErrors={this.props.page.formErrors} handleSuccess={this.handleSuccess}/>
                     </div>
                 </div>
-                <Footer/>
             </div>
         )
     }
 }
 
-
-export default connect(
+const CreateUserPage = connect(
     (state) => {
         return {page: state.page, user: state.user, account: state.account}
     }
-)(CreateUserPage);
+)(CreateUserPageChild);
+
+export default CreateUserPage;

@@ -1,4 +1,4 @@
-import Registration from './Registration.jsx';
+export {Registration} from './Registration.jsx';
 import {
     ChoosePlanPage,
     CreateUserPage,
@@ -6,7 +6,6 @@ import {
 } from './routes/index.jsx';
 
 export default {
-    Registration,
     ChoosePlanPage,
     CreateUserPage,
     TailorExperiencePage
