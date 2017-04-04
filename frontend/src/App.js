@@ -8,17 +8,16 @@ import { createLogger } from 'redux-logger';
 
 import {
     AboutPage,
-    BlogPostPage,
-    BlogListPage,
+    BlogPages,
     ContactPage,
     FeaturesPage,
     HomePage,
     LoginPage,
     PricingPage,
-    Registration
+
 } from './routes/index.jsx'
 
-
+import {Registration} from './routes/Registration/index.jsx'
 
 import rootReducer from './reducers/index.jsx';
 
@@ -45,11 +44,10 @@ class App extends React.Component {
                 <div className="appRoutes">
                     <Route path="/" exact={true} component={HomePage}/>
                     <Route path='/about' component={AboutPage} />
-                    <Route path="/blog" exact={true} component={BlogListPage}/>
-                    <Route path="/blog/:postId" component={({match}) => (<BlogPostPage id={match.params.postId}/>)}/>   {/* Could get blog before rendering*/}
-                    <Route path='/register' component={Registration.CreateUserPage}/>
-                    <Route path='/register/plan' component={Registration.ChoosePlanPage} />
-                    <Route path='/register/experience' component={Registration.TailorExperiencePage} />
+                    <Route path="/blog" component={BlogPages} />
+                    {/*<Route path="/blog" exact={true} component={BlogListPage}/>*/}
+                    {/*<Route path="/blog/:postId" component={({match}) => (<BlogPostPage id={match.params.postId}/>)}/>   /!* Could get blog before rendering*!/*/}
+                    <Route path='/register' component={Registration}/>
                     <Route path='/pricing' component={PricingPage} />
                     <Route path='/contact' component={ContactPage} />
                     <Route path='/features' component={FeaturesPage} />
