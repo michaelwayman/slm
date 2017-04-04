@@ -80,7 +80,7 @@ class LoginFormContainer extends React.Component {
         this.props.dispatch(logUserIn(
             this.state.formData,
             data => {
-                hashHistory.push('/dashboard');
+                this.props.handleSuccess()
             },
             data => {
                 this.setState({formErrors: data})

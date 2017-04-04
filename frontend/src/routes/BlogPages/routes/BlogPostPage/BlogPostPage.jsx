@@ -1,9 +1,7 @@
 import React from 'react'
 import {BlogPost} from './components/post/index.jsx'
 import {CommentList, CommentForm} from './components/comment/index.jsx'
-import {getCommentsByPostId, getPostById} from '../../lib/blogService'
-import {Navigation} from "../components/Navigation";
-import {Footer} from '../components/Footer'
+import {getCommentsByPostId, getPostById} from '../../lib/blogService.jsx'
 
 
 class BlogPostPage extends React.Component {
@@ -51,14 +49,12 @@ class BlogPostPage extends React.Component {
     render() {
         return (
             <section className="blogPostPage">
-            <Navigation/>
                 <BlogPost post={this.state.post}/>
                 <CommentForm handleInputChange={this.handleInputChange}
                              currentComment={this.state.currentComment}
                              handleSubmit={this.handleCommentSubmit}
                 />
                 <CommentList comments={this.state.comments}/>
-            <Footer/>
             </section>
         )
     }

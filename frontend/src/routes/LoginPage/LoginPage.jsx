@@ -10,13 +10,15 @@ class LoginPage extends React.Component {
         this.state = {};
     }
 
+    handleSuccess = ()  => this.props.history.push('/dashboard');
+
     render() {
         return (
             <section id="loginPage">
                 <div className="logo"></div>
                 <h3>Sign in to SLM</h3>
                 <div className="boxContainer login">
-                    <LoginForm />
+                    <LoginForm handleSuccess={this.handleSuccess}/>
                 </div>
                 <div className="boxContainer createAccount">
                     <span>New to SLM? <a href="#">Create an account.</a></span>

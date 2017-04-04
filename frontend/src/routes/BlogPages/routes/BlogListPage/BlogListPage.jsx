@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {getBlogPosts} from '../../lib/blogService'
-import {Navigation} from "../components/Navigation/index.jsx";
+import {getBlogPosts} from '../../lib/blogService.jsx'
 
 
 const BlogLink = (blog) => (
@@ -33,7 +32,6 @@ class BlogListPage extends React.Component {
     render() {
         return (
             <div className="BlogListPage">
-            <Navigation/>
                 <div className="blogList">
                     {this.state.blogs.map((blog) => (
                         <BlogLink key={blog.id} {...blog}/>

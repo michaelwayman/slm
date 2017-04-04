@@ -7,7 +7,12 @@ import {CreateUserForm} from './components/index.jsx';
 
 import './styles.css';
 
-class CreateUserPage extends React.Component {
+class CreateUserPageChild extends React.Component {
+
+    handleSuccess = () => {
+      this.props.history.push('/register/plan')
+    };
+
     render() {
         return (
             <div>
@@ -23,7 +28,7 @@ class CreateUserPage extends React.Component {
                 </div>
                 <div className="row pageWidth padTop-32 padBottom-64">
                     <div className="col-6">
-                        <CreateUserForm formErrors={this.props.page.formErrors}/>
+                        <CreateUserForm formErrors={this.props.page.formErrors} handleSuccess={this.handleSuccess}/>
                     </div>
                 </div>
             </div>
@@ -31,9 +36,10 @@ class CreateUserPage extends React.Component {
     }
 }
 
-
-export default connect(
+const CreateUserPage = connect(
     (state) => {
         return {page: state.page, user: state.user, account: state.account}
     }
-)(CreateUserPage);
+)(CreateUserPageChild);
+
+export default CreateUserPage;
