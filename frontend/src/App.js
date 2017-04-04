@@ -43,11 +43,11 @@ class App extends React.Component {
             <Provider store={store}>
                 <BrowserRouter basename="/">
                 <div className="appRoutes">
-                    <Route path="/" exact={true} component={HomePage}/>
+                    <Route path="/" exact component={HomePage}/>
                     <Route path='/about' component={AboutPage} />
-                    <Route path="/blog" exact={true} component={BlogListPage}/>
+                    <Route path="/blog" exact component={BlogListPage}/>
                     <Route path="/blog/:postId" component={({match}) => (<BlogPostPage id={match.params.postId}/>)}/>   {/* Could get blog before rendering*/}
-                    <Route path='/register' component={Registration.CreateUserPage}/>
+                    <Route path='/register' exact component={Registration.CreateUserPage}/>
                     <Route path='/register/plan' component={Registration.ChoosePlanPage} />
                     <Route path='/register/experience' component={Registration.TailorExperiencePage} />
                     <Route path='/pricing' component={PricingPage} />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.scss';
+import './styles.css';
 
 class ProgressItem extends React.Component {
     render() {

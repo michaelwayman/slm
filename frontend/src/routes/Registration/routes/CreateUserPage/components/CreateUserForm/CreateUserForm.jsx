@@ -1,5 +1,4 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 import { createUser, setPageFormErrors, loginUser, getAccountDetails } from '../../../../../../actions/index.jsx';
@@ -87,7 +86,7 @@ class Form extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-4 floatRight">
+                        <div className="col-4">
                             <button className="btn btnGreen" type="submit">Create Account</button>
                         </div>
                     </div>
@@ -129,7 +128,7 @@ class CreateAccountForm extends React.Component {
                     data => {
                         this.props.dispatch(getAccountDetails(
                             data => {
-                                hashHistory.push('/register/plan')
+                                this.props.successfulSubmit();
                             }
                         ))
                     }
