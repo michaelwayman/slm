@@ -16,7 +16,7 @@ class Navigation extends React.Component {
             <section className="nav">
                 <div className="container pageWidth">
                     <nav className="navLinks">
-                        <NavLink exact activeOnlyWhenExact to="/">SLM</NavLink>
+                        <NavLink exact to="/">SLM</NavLink>
                         <NavLink to="/features" activeClassName="active">Features</NavLink>
                         <NavLink to="/pricing" activeClassName="active">Pricing</NavLink>
                         <NavLink to="/blog" activeClassName="active">Blog</NavLink>

@@ -52,7 +52,7 @@ class CreateUserPageChild extends React.Component {
 
 const CreateUserPage = connect(
     (state) => {
-        return {page: state.page, user: state.user, account: state.account}
+        return {page: state.page}
     }
 )(CreateUserPageChild);
 
