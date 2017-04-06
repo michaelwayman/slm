@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
-import { setPageFormErrors } from './page.jsx';
-
 import {logOut, saveToken} from '../auth.jsx';
+
+import { handleResponse, handleError } from './lib/index.jsx';
 
 
 export const LOGOUT_USER= 'LOGOUT_USER';
@@ -12,20 +12,17 @@ export function logoutUser() {
 }
 
 
-export const PERSIST_USER = 'PERSIST_USER';
-export function persistUser(token) {
-    saveToken(token);
-    return {type: PERSIST_USER, token}
-}
-
-
 export const CREATE_USER_REQUEST = 'CREATE_USER_REQUEST';
 export const CREATE_USER_SUCCESS_RESPONSE = 'CREATE_USER_SUCCESS_RESPONSE';
 export const CREATE_USER_FAIL_RESPONSE = 'CREATE_USER_FAIL_RESPONSE';
-export function createUser(payload, successCb, errorCb) {
+export function createUser(username, password) {
     return (dispatch, getState) => {
-        dispatch({type: CREATE_USER_REQUEST});
-        fetch(`/api/users/`, {
+
+        const payload = {email: username, password};
+
+        dispatch({type: CREATE_USER_REQUEST, payload});
+
+        return fetch(`/api/users/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -33,20 +30,8 @@ export function createUser(payload, successCb, errorCb) {
             },
             body: JSON.stringify(payload)
         })
-        .then(response => {
-            if (response.status === 201) {
-                response.json().then(data => {
-                    dispatch({type: CREATE_USER_SUCCESS_RESPONSE, payload: data});
-                    if (successCb) successCb(data);
-                });
-            }
-            else if (response.status === 400) {
-                response.json().then(data => {
-                    dispatch({type: CREATE_USER_FAIL_RESPONSE, payload: data});
-                    if (errorCb) errorCb(data)
-                });
-            }
-        })
+        .then(handleResponse(dispatch, CREATE_USER_SUCCESS_RESPONSE))
+        .catch(handleError(dispatch, CREATE_USER_FAIL_RESPONSE))
     }
 }
 
@@ -54,31 +39,24 @@ export function createUser(payload, successCb, errorCb) {
 export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
 export const LOGIN_USER_SUCCESS_RESPONSE = 'LOGIN_USER_SUCCESS_RESPONSE';
 export const LOGIN_USER_FAIL_RESPONSE = 'LOGIN_USER_FAIL_RESPONSE';
-export function loginUser(payload, successCb, errorCb) {
+export function loginUser(username, password) {
     return (dispatch, getState) => {
+
+        const payload = {username, password};
+
         dispatch({type: LOGIN_USER_REQUEST, payload});
-        fetch(`/api/obtain-auth-token/`, {
+
+        return fetch(`/api/obtain-auth-token/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: payload.email, password: payload.password})
+            body: JSON.stringify(payload)
         })
-        .then(response => {
-            if (response.status === 200) {
-                response.json().then(data => {
-                    dispatch({type: LOGIN_USER_SUCCESS_RESPONSE, payload:  data});
-                    dispatch(persistUser(data['token']));
-                    if (successCb) successCb(data);
-                });
-            }
-            else if (response.status === 400) {
-                response.json().then(data => {
-                    dispatch({type: LOGIN_USER_FAIL_RESPONSE, payload: data});
-                    dispatch(setPageFormErrors(data));
-                    if (errorCb) errorCb(data)
-                });
-            }
+        .then(handleResponse(dispatch, LOGIN_USER_SUCCESS_RESPONSE))
+        .then((json) => {
+            saveToken(json.token)
         })
+        .catch(handleError(dispatch, LOGIN_USER_FAIL_RESPONSE))
     }
 }

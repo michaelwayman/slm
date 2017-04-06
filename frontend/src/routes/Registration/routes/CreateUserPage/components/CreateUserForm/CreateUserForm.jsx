@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import { createUser, setPageFormErrors, loginUser, getAccountDetails } from '../../../../../../actions/index.jsx';
 
 import './styles.css';
+
 
 class Form extends React.Component {
 
@@ -119,26 +117,9 @@ class CreateAccountForm extends React.Component {
         });
     }
 
-
     handleSubmit(e) {
         e.preventDefault();
-        this.props.dispatch(createUser(this.state.formData,
-            data => {
-                this.props.dispatch(setPageFormErrors({}));
-                this.props.dispatch(loginUser(this.state.formData,
-                    data => {
-                        this.props.dispatch(getAccountDetails(
-                            data => {
-                                this.props.handleSuccess()
-                            }
-                        ))
-                    }
-                ));
-            },
-            data => {
-                this.props.dispatch(setPageFormErrors(data));
-            }
-        ));
+        this.props.handleSubmit(this.state.formData)
     }
 
     render() {
@@ -149,4 +130,5 @@ class CreateAccountForm extends React.Component {
     }
 }
 
-export default connect()(CreateAccountForm);
+
+export default CreateAccountForm;
