@@ -1,10 +1,5 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
-import { connect } from 'react-redux';
 
-import { createAccount } from './actions.jsx';
-
-import { setPageState } from '../../../actions/page.jsx';
 import './styles.css';
 
 class Form extends React.Component {
@@ -103,24 +98,15 @@ class RegistrationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.dispatch(createAccount(
-            this.state.formData,
-            data => {
-                hashHistory.push('/register');
-            },
-            data => {
-                this.props.dispatch(setPageState({formErrors: data, formData: this.state.formData}));
-                hashHistory.push('/register');
-            }
-        ));
+        this.props.handleSubmit(this.state.formData);
     }
 
     render() {
         return <Form handleSubmit={this.handleSubmit}
                      handleInputChange={this.handleInputChange}
-                     formErrors={this.state.formErrors}
+                     formErrors={this.props.formErrors || {}}
                      formData={this.state.formData} />
     }
 }
 
-export default connect()(RegistrationForm)
+export default RegistrationForm

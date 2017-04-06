@@ -34,6 +34,6 @@ class ChoosePlanPage extends React.Component {
 
 export default connect(
     (state) => {
-        return {page: state.page, user: state.user, account: state.account}
+        return {page: state.page}
     }
 )(ChoosePlanPage);

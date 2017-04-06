@@ -77,7 +77,7 @@ class Form extends React.Component {
                     </div>
 
                     <div className="row marginTop-32">
-                        <div className="col-4 floatRight">
+                        <div className="col-4">
                             <button className="btn btnGreen" type="submit">Select Plan</button>
                         </div>
                     </div>

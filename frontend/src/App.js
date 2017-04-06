@@ -42,7 +42,7 @@ class App extends React.Component {
             <Provider store={store}>
                 <BrowserRouter basename="/">
                 <div className="appRoutes">
-                    <Route path="/" exact={true} component={HomePage}/>
+                    <Route path="/" exact component={HomePage}/>
                     <Route path='/about' component={AboutPage} />
                     <Route path="/blog" component={BlogPages} />
                     {/*<Route path="/blog" exact={true} component={BlogListPage}/>*/}

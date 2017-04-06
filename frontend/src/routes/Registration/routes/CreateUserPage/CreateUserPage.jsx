@@ -1,6 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {
+    createUser,
+    setPageFormErrors,
+    loginUser,
+    // getAccountDetails
+} from '../../../../actions/index.jsx';
+
 import {ProgressBar} from '../../components/index.jsx';
 
 import {CreateUserForm} from './components/index.jsx';
@@ -9,8 +16,14 @@ import './styles.css';
 
 class CreateUserPageChild extends React.Component {
 
-    handleSuccess = () => {
-      this.props.history.push('/register/plan')
+    handleFormSubmit = (formData) => {
+        const {email, password} = formData;
+
+        this.props.dispatch(createUser(email, password))
+            .then(() => this.props.dispatch(setPageFormErrors({})))
+            .then(() => this.props.dispatch(loginUser(email, password)))
+            .then(() => this.props.history.push('/register/plan'))
+            .catch((error) => {});
     };
 
     render() {
@@ -28,7 +41,8 @@ class CreateUserPageChild extends React.Component {
                 </div>
                 <div className="row pageWidth padTop-32 padBottom-64">
                     <div className="col-6">
-                        <CreateUserForm formErrors={this.props.page.formErrors} handleSuccess={this.handleSuccess}/>
+                        <CreateUserForm formErrors={this.props.page.formErrors}
+                                        handleSubmit={this.handleFormSubmit}/>
                     </div>
                 </div>
             </div>
@@ -38,7 +52,7 @@ class CreateUserPageChild extends React.Component {
 
 const CreateUserPage = connect(
     (state) => {
-        return {page: state.page, user: state.user, account: state.account}
+        return {page: state.page}
     }
 )(CreateUserPageChild);
 
