@@ -1,1 +1,3 @@
-export {HomePage} from './HomePage.jsx'
+import HomePage from './HomePage.jsx'
+
+export default HomePage

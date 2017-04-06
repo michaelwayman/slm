@@ -1,6 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import {
+    createUser,
+    setPageFormErrors,
+    loginUser,
+} from '../../actions/index.jsx';
+
 import {Jumbotron, Navigation, Footer} from '../components/index.jsx';
-import {RegistrationForm} from '../components/index.jsx';
+
+import {RegistrationForm} from './components/index.jsx';
 
 import './styles.css';
 
@@ -29,31 +38,17 @@ class IconSection extends React.Component {
 }
 
 
-class ImageSection extends React.Component {
-    render() {
-        return (
-            <div className="imageSection pageWidth padTop-64">
-                <div className="row">
-                    <div className="col-6">
-                        <div className="padTop-96">
-                            <h4>Your software in one place</h4>
-                            <p className="font-16 padTop-8">
-                                Give teams the software they need with a single click.
-                                Find the best solutions for your company.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="col-6 textCenter">
-                        <img alt="" src={`${this.props.image}`} />
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
-
-
 class HomePage extends React.Component {
+
+    handleRegistrationSubmit = (formData) => {
+        const {email, password} = formData;
+
+        this.props.dispatch(createUser(email, password))
+            .then(() => this.props.dispatch(setPageFormErrors({})))
+            .then(() => this.props.dispatch(loginUser(email, password)))
+            .then(() => this.props.history.push('/register/plan'))
+            .catch((error) => this.props.history.push('/register'));
+    };
 
     render() {
         return (
@@ -69,7 +64,7 @@ class HomePage extends React.Component {
                             </p>
                         </div>
                         <div className="col-5">
-                            <RegistrationForm />
+                            <RegistrationForm handleSubmit={this.handleRegistrationSubmit}/>
                         </div>
                     </div>
                 </Jumbotron>
@@ -128,4 +123,6 @@ class HomePage extends React.Component {
     }
 }
 
-export {HomePage, ImageSection}
+export default connect(state => {
+    return {page: state.page, user: state.user}
+})(HomePage)
