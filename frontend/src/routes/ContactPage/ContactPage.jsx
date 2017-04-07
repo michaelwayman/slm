@@ -1,4 +1,9 @@
 import React from 'react';
+
+import {connect} from 'react-redux';
+
+import {contactSubmit, setPageFormErrors} from '../../actions/index.jsx';
+
 import { Navigation, Footer } from '../components/index.jsx';
 import { ContactForm } from './components/index.jsx';
 
@@ -6,6 +11,14 @@ import './styles.css';
 
 
 class ContactPage extends React.Component {
+
+    handleFormSubmit = (formData) => {
+        this.props.dispatch(contactSubmit(formData))
+            .then(() => this.props.dispatch(setPageFormErrors({})))
+            .then(() => { console.log('success') })
+            .catch(() => {});
+    };
+
     render() {
         return (
             <section id="contactPage">
@@ -20,7 +33,8 @@ class ContactPage extends React.Component {
                             <p>We have an open contact policy at SLM. Contact us about anything</p>
                         </div>
                     </div>
-                    <ContactForm/>
+                    <ContactForm formErrors={this.props.page.formErrors}
+                                 handleSubmit={this.handleFormSubmit}/>
                 </div>
                 <Footer/>
             </section>
@@ -28,4 +42,7 @@ class ContactPage extends React.Component {
     }
 }
 
-export {ContactPage}
+
+export default connect(state => {
+    return {page: state.page, user: state.user}
+})(ContactPage)

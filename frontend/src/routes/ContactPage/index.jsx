@@ -1,1 +1,3 @@
-export {ContactPage} from './ContactPage.jsx';
+import ContactPage from './ContactPage.jsx';
+
+export default ContactPage

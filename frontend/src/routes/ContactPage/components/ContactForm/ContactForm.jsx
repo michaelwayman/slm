@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { contactSubmit } from './actions.jsx';
 
-import './styles.scss';
+import './styles.css';
 
 
 class ContactForm extends React.Component {
@@ -89,10 +87,7 @@ class ContactFormContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formData: Object.assign({}, {
-                username: this.props.user.email
-            }),
-            formErrors: {},
+            formData: {},
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -111,30 +106,17 @@ class ContactFormContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.dispatch(contactSubmit(
-            this.state.formData,
-            data => {
-                console.log('success bitches')
-            },
-            data => {
-                console.log(data);
-                this.setState({formErrors: data})
-            }
-        ));
+        this.props.handleSubmit(this.state.formData)
     }
 
     render() {
         return (
             <ContactForm handleSubmit={this.handleSubmit}
                          handleInputChange={this.handleInputChange}
-                         formErrors={this.state.formErrors}
+                         formErrors={this.props.formErrors || {}}
                          formData={this.state.formData}/>
         )
     }
 }
 
-export default connect(
-    (state) => {
-        return {user: state.user}
-    }
-)(ContactFormContainer)
+export default ContactFormContainer
