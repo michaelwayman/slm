@@ -33,7 +33,7 @@ class Form extends React.Component {
                        placeholder="email"
                        value={this.props.formData.email || ''}
                        onChange={this.props.handleInputChange}/>
-                {this.fieldError('username')}
+                {this.fieldError('email')}
                 <input className={this.getInputClassName('password')}
                        type="password"
                        name="password"
