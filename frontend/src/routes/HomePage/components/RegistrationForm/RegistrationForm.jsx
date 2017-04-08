@@ -92,7 +92,7 @@ class RegistrationForm extends React.Component {
         const name = target.name;
 
         this.setState({
-            formData: Object.assign({}, this.state.formData, {[name]: value})
+            formData: {...this.state.formData, [name]: value}
         });
     }
 
