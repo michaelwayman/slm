@@ -1,10 +1,15 @@
+import { getUser } from '../auth.jsx';
+
 import {
     CREATE_USER_SUCCESS_RESPONSE,
     PERSIST_USER,
 } from '../actions/index.jsx';
 
 
-export function userReducer(state = {}, action) {
+export function userReducer(state = getUser, action) {
+
+    if (typeof state === 'function') state = state() || {};
+
     switch (action.type) {
         case CREATE_USER_SUCCESS_RESPONSE:
             return Object.assign({}, state, action.data);

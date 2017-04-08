@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-import {logOut, saveToken} from '../auth.jsx';
+import {logOut, saveUser} from '../auth.jsx';
 
 import { handleResponse, handleError } from './lib/index.jsx';
 
@@ -55,7 +55,7 @@ export function loginUser(username, password) {
         })
         .then(handleResponse(dispatch, LOGIN_USER_SUCCESS_RESPONSE))
         .then((json) => {
-            saveToken(json.token)
+            saveUser(json)
         })
         .catch(handleError(dispatch, LOGIN_USER_FAIL_RESPONSE))
     }

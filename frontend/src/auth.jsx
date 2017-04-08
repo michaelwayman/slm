@@ -1,19 +1,21 @@
 
-function loggedIn() {
-    return !!localStorage.token
+export function loggedIn() {
+    return !!getUser()
 }
 
-function logOut() {
+export function logOut() {
     localStorage.clear()
 }
 
-function saveToken(token) {
-    localStorage.setItem('token', token)
+export function saveUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
 }
 
-function getToken() {
-    return localStorage.token
+export function getUser() {
+    try {
+        return JSON.parse(localStorage.user)
+    }
+    catch(e) {
+        return null;
+    }
 }
-
-
-export {loggedIn, logOut, getToken, saveToken}

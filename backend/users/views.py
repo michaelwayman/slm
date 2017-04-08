@@ -24,10 +24,9 @@ class ObtainAuthToken(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        return Response({
-            'token': token.key,
-            'id': user.id,
-        })
+        user_details = UserDetailsSerializer(instance=user).data
+        user_details['token'] = str(token)
+        return Response(user_details)
 
 
 class UserViewSet(ModelViewSet):
