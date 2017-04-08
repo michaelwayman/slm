@@ -4,7 +4,6 @@ export {
 } from './page.jsx';
 
 export {
-    persistUser, PERSIST_USER,
     logoutUser, LOGOUT_USER,
     loginUser, LOGIN_USER_SUCCESS_RESPONSE, LOGIN_USER_FAIL_RESPONSE,
     createUser, CREATE_USER_FAIL_RESPONSE, CREATE_USER_SUCCESS_RESPONSE,

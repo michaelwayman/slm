@@ -1,7 +1,54 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { NavLink, Link } from 'react-router-dom';
+
+import { logoutUser } from '../../../actions/index.jsx';
 
 import './styles.css';
+
+
+class LoggedInDropDown extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        };
+
+        this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    toggleDropdown(e) {
+        e.preventDefault();
+        this.setState({open: !this.state.open})
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.dispatch(logoutUser());
+    }
+
+    render() {
+        let classes = 'drop';
+        if (this.state.open) classes += ' open';
+        return (
+            <div className="account dropdown">
+                <a href="#" className="navLink" onClick={this.toggleDropdown}>{this.props.user.username} <i className="fa fa-angle-down fa-1x"/></a>
+                <div className={classes}>
+                    <ul>
+                        <li><a href="#" onClick={this.handleLogout}>Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        )
+    }
+}
+
+const LoggedInDropDownWrap = connect(state => {
+    return {user: state.user}
+})(LoggedInDropDown);
+
 
 
 class Navigation extends React.Component {
@@ -11,23 +58,39 @@ class Navigation extends React.Component {
         this.state = {};
     }
 
+    buildActions() {
+        if (this.props.user.username) {
+            return (
+                <section className="actions user">
+                    <LoggedInDropDownWrap />
+                </section>
+            )
+        } else {
+            return (
+                <section className="actions anonymous">
+                    <NavLink to="/login" className="navLink">Sign in</NavLink> or <NavLink to="/register" className="navLink">Sign up</NavLink>
+                </section>
+            )
+        }
+    }
+
     render() {
         return (
-            <section className="nav">
+            <nav className="nav">
                 <div className="container pageWidth">
-                    <nav className="navLinks">
-                        <NavLink exact to="/">SLM</NavLink>
-                        <NavLink to="/features" activeClassName="active">Features</NavLink>
-                        <NavLink to="/pricing" activeClassName="active">Pricing</NavLink>
-                        <NavLink to="/blog" activeClassName="active">Blog</NavLink>
-                    </nav>
-                    <section className="actions">
-                        <NavLink to="/login">Sign in</NavLink> or <NavLink to="/register">Sign up</NavLink>
+                    <section className="navLinks">
+                        <Link to="/" className="navLink">SLM</Link>
+                        <NavLink to="/features" className="navLink" activeClassName="active">Features</NavLink>
+                        <NavLink to="/pricing" className="navLink" activeClassName="active">Pricing</NavLink>
+                        <NavLink to="/blog" className="navLink" activeClassName="active">Blog</NavLink>
                     </section>
+                    {this.buildActions()}
                 </div>
-            </section>
+            </nav>
         )
     }
 }
 
-export {Navigation}
+export default connect(state => {
+    return {user: state.user}
+})(Navigation)

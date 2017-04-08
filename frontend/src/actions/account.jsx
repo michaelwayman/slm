@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { setPageFormErrors } from './page.jsx';
 
-import { getToken } from '../auth.jsx';
+import { getUser } from '../auth.jsx';
 
 
 export const GET_ACCOUNT_DETAILS_REQUEST = 'GET_ACCOUNT_DETAILS_REQUEST';
@@ -16,7 +16,7 @@ export function getAccountDetails(successCb, errorCb) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${getToken()}`
+                'Authorization': `Token ${getUser().token}`
             }
         })
         .then(response => {
@@ -48,7 +48,7 @@ export function updateAccount(payload, successCb, errorCb) {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${getToken()}`
+                'Authorization': `Token ${getUser().token}`
             },
             body: JSON.stringify(payload)
         })

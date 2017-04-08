@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware'
+    'django.middleware.common.CommonMiddleware',
+
+    'middleware.slow_down.SlowDownMiddleware'
 ]
 
 ROOT_URLCONF = 'slm.urls'
@@ -136,3 +138,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+SLOW_DOWN = 0.5
