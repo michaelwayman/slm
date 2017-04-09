@@ -1,3 +1,3 @@
 import ConfirmationDialogue from './ConfirmationDialogue/index.jsx';
 
-export {ConfirmationDialogue}
+export default ConfirmationDialogue

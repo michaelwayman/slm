@@ -1,1 +1,1 @@
-export {Modal} from './Modal'
+export {Modal, RegistrationModal, ConfirmationModal} from './Modal'

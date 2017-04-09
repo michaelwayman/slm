@@ -10,21 +10,21 @@ require('./styles.css');
 
 export class Modal extends React.Component {
 
-    // componentDidMount() {
-    //     document.body.style.overflow = 'hidden';
-    // }
-    //
-    // componentWillUnmount() {
-    //     document.body.style.overflow = 'initial';
-    // }
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'initial';
+    }
 
     render () {
         return (
             <CSSTransitionGroup transitionName="modal"
-                                     transitionEnter={false}
-                                     transitionLeave={false}
-                                     transitionAppear={true}
-                                     transitionAppearTimeout={1000}>
+                                transitionEnter={false}
+                                transitionLeave={false}
+                                transitionAppear={true}
+                                transitionAppearTimeout={1000}>
                 <div className="modal">
                     <div className="backdrop"></div>
                     <div className="content">
@@ -51,7 +51,7 @@ export class RegistrationModal extends React.Component {
 export class ConfirmationModal extends React.Component {
     render() {
         return (
-            <Modal {...this.props} body={<ConfirmationDialogue/>}/>
+          <Modal {...this.props} body={<ConfirmationDialogue/>}/>
         )
     }
 }
