@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-
-import {contactSubmit, setPageFormErrors} from '../../actions/index.jsx';
-
+import { contactSubmit, setPageFormErrors } from '../../actions/index.jsx';
 import { Navigation, Footer } from '../components/index.jsx';
 import { ContactForm } from './components/index.jsx';
+import { ConfirmationModal } from '../components/Modal/Modal.jsx';
 
 import './styles.css';
 
@@ -15,15 +14,30 @@ class ContactPage extends React.Component {
     handleFormSubmit = (formData) => {
         this.props.dispatch(contactSubmit(formData))
             .then(() => this.props.dispatch(setPageFormErrors({})))
-            .then(() => { console.log('success') })
+            .then(() => this.setState({showModal: true}))
             .catch(() => {});
     };
 
+    constructor(props) {
+      super(props);
+      this.state = {
+        showModal: false
+      };
+    }
+
+    onClose = () => {
+      this.setState({showModal: false});
+      setTimeout(() => {
+        this.props.history.push('/')
+      }, 1500);
+    }
+
     render() {
-        return (
+      return (
             <section id="contactPage">
                 <Navigation/>
                 <div className="pageWidth padBottom-64">
+                  {this.state.showModal && <ConfirmationModal close={this.onClose}/>}
                     <h1 className="padTop-64">Contact Us</h1>
                     <div className="row padTop-32 padBottom-32">
                         <div className="col-1">
