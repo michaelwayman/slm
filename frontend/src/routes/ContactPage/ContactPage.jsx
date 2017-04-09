@@ -7,6 +7,8 @@ import {contactSubmit, setPageFormErrors} from '../../actions/index.jsx';
 import { Navigation, Footer } from '../components/index.jsx';
 import { ContactForm } from './components/index.jsx';
 
+import { ConfirmationModal } from '../components/Modal/index.jsx';
+
 import './styles.css';
 
 
@@ -15,7 +17,7 @@ class ContactPage extends React.Component {
     handleFormSubmit = (formData) => {
         this.props.dispatch(contactSubmit(formData))
             .then(() => this.props.dispatch(setPageFormErrors({})))
-            .then(() => { console.log('success') })
+            .then(() => { console.log(this.props) })
             .catch(() => {});
     };
 

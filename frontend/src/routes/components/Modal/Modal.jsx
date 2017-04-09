@@ -1,7 +1,8 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import RegistrationForm from '../../HomePage/components/index.jsx';
+import ConfirmationDialogue from '../dialogues/index.jsx';
 
 
 require('./styles.css');
@@ -19,7 +20,7 @@ export class Modal extends React.Component {
 
     render () {
         return (
-            <ReactCSSTransitionGroup transitionName="modal"
+            <CSSTransitionGroup transitionName="modal"
                                      transitionEnter={false}
                                      transitionLeave={false}
                                      transitionAppear={true}
@@ -33,7 +34,7 @@ export class Modal extends React.Component {
                         {this.props.footer}
                     </div>
                 </div>
-            </ReactCSSTransitionGroup>
+            </CSSTransitionGroup>
         )
     }
 }
@@ -43,6 +44,14 @@ export class RegistrationModal extends React.Component {
     render() {
         return (
             <Modal {...this.props} body={<RegistrationForm/>}/>
+        )
+    }
+}
+
+export class ConfirmationModal extends React.Component {
+    render() {
+        return (
+            <Modal {...this.props} body={<ConfirmationDialogue/>}/>
         )
     }
 }
