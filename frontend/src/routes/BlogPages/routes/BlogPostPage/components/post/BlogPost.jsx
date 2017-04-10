@@ -10,9 +10,10 @@ const dateToDayMonthYear = (date) => {
 
 const BlogPost = (props) => (
     <div className="blogPost">
-        <h1>{props.post.id}</h1>
-        <h1>{props.post.title}</h1>
-        <h1>{props.post.author}</h1>
+        <div className="row">
+            <h1 className="col-md-4">{props.post.title}</h1>
+            <h2 className="col-md-4">{props.post.author}</h2>
+        </div>
         <p>{props.post.content}</p>
         <p>{dateToDayMonthYear(props.post.posted_date)}</p>
     </div>

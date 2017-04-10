@@ -2,6 +2,9 @@ const BASE_BLOG_URL = '/api/blog/';
 const BLOG_POST_URL = BASE_BLOG_URL + 'posts';
 const BLOG_COMMENT_URL = BASE_BLOG_URL + 'comments';
 
+let defaultJSONHeaders = new Headers({
+    'Content-Type': 'application/json'
+});
 
 const getBlogPosts = () => {
     return fetch(BLOG_POST_URL)
@@ -13,6 +16,18 @@ const getCommentsByPostId = (id) => {
         .then(res => res.json())
 };
 
+const postCommentToBlogByBlogId = (blogId, comment) => {
+    const payload = {
+        ...comment,
+        post: blogId
+    };
+    return fetch(`${BLOG_COMMENT_URL}/`, {
+        method: 'POST',
+        headers: defaultJSONHeaders,
+        body: JSON.stringify(payload)
+    })
+};
+
 
 const getPostById = (id) => {
   return fetch(`${BLOG_POST_URL}/${id}`)
@@ -20,4 +35,4 @@ const getPostById = (id) => {
 };
 
 
-export {getBlogPosts, getCommentsByPostId, getPostById}
+export {getBlogPosts, getCommentsByPostId, getPostById, postCommentToBlogByBlogId}
