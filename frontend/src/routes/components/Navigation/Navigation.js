@@ -82,7 +82,6 @@ class Navigation extends React.Component {
                     <section className="navLinks">
                         <Link to="/" className="navLink">SLM</Link>
                         <NavLink to="/features" className="navLink" activeClassName="active">Features</NavLink>
-                        <NavLink to="/pricing" className="navLink" activeClassName="active">Pricing</NavLink>
                         <NavLink to="/blog" className="navLink" activeClassName="active">Blog</NavLink>
                     </section>
                     {this.buildActions()}

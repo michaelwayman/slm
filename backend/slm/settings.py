@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     # slm apps
     'users.apps.UsersConfig',
-    'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
     'blog.apps.BlogConfig',
 ]
