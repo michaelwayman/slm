@@ -5,11 +5,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { getBlogPosts } from '../../lib/blogService.jsx'
 import logger from 'redux-logger'
 
-
+// TODO: Find a better place for this, and style it cool
 const LoadingSpinner = () => (
     <i className="fa fa-spinner fa-spin fa-5x"></i>
 );
 
+
+/*** Reducers ***/
 
 const blogs = (state = {}, action) => {
     switch (action.type) {
@@ -20,7 +22,6 @@ const blogs = (state = {}, action) => {
     }
 };
 
-
 const loading = (state={}, action) => {
     switch(action.type) {
         case 'LOAD_BLOGS':
@@ -30,28 +31,35 @@ const loading = (state={}, action) => {
     }
 };
 
-
 const blogPageReducer = combineReducers({
     blogs,
     loading
 });
 
 
+/*** Store ***/
+
+const store = createStore(
+  blogPageReducer,
+  applyMiddleware(logger)
+);
+
+
+/*** Sub components ***/
+
 const BlogLink = ({blog}) => (
-    <li style={{'list-style': 'none'}}>
+    <li style={{listStyle: 'none'}}>
         <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
     </li>
 );
 
 
+/*** Container ***/
+
 class BlogList extends React.Component {
 
     componentDidMount() {
-        getBlogPosts()
-            .then(blogs => this.props.dispatch({
-                type: 'LOAD_BLOGS',
-                blogs
-            }))
+        this.props.loadBlogs()
     }
 
 
@@ -60,13 +68,20 @@ class BlogList extends React.Component {
             ? <LoadingSpinner/>
             : this.props.blogs.map(blog => <BlogLink key={blog.id} blog={blog}/>);
         return (
-            <section className="blogList row padTop-96 padBottom-96 pageWidth textCenter">
-                {blogList}
+            <section className="blogListPage">
+                <div className="row padTop-96 pageWidth textCenter">
+                    <h1>Blog</h1>
+                </div>
+                <div className="row padTop-96 padBottom-96 pageWidth textCenter">
+                    {blogList}
+                </div>
             </section>
         )
     }
 
 }
+
+/*** Connect Functions ***/
 
 const mapStateToBlogListProps = (state) => {
     return {
@@ -74,32 +89,33 @@ const mapStateToBlogListProps = (state) => {
         loading: state.loading
     }
 };
-
+const mapDispatchToBlogListProps = (dispatch) => {
+    return {
+        loadBlogs: () => {
+            getBlogPosts()
+                .then(blogs =>
+                    dispatch({
+                        type: 'LOAD_BLOGS',
+                        blogs
+                    }))
+        }
+    }
+};
 
 const VisibleBlogList = connect(
     mapStateToBlogListProps,
-    null
+    mapDispatchToBlogListProps
 )(BlogList);
 
 
-const store = createStore(
-  blogPageReducer,
-  applyMiddleware(logger)
-);
+/*** Page ***/
 
 class BlogListPage extends React.Component {
 
     render() {
         return (
             <Provider store={store}>
-                <div>
-                <div className="row padTop-96 pageWidth textCenter">
-                    <h1>Blog</h1>
-                </div>
-                <div className="row padTop-96 padBottom-96 pageWidth text-center">
-                    <VisibleBlogList/>
-                </div>
-                </div>
+                <VisibleBlogList/>
             </Provider>
         );
     }

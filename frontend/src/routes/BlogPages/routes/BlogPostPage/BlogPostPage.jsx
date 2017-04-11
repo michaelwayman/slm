@@ -12,6 +12,9 @@ const LoadingSpinner = () => (
     <i className="fa fa-spinner fa-spin fa-5x"></i>
 );
 
+
+/*** Reducers ***/
+
 const post = (state={}, action) => {
     switch (action.type) {
         case 'LOAD_POST':
@@ -33,7 +36,6 @@ const comments = (state=[], action) => {
             return state;
     }
 };
-
 
 const loading = (state, action) => {
     switch (action.type) {
@@ -71,42 +73,66 @@ const postPageReducer = combineReducers({
     loading
 });
 
+
+/*** Store ***/
+
 const store = createStore(postPageReducer,
                           applyMiddleware(logger));
 
+
+/*** Action Creators ***/
+
+const postComment = (dispatch, postId, comment) => {
+    dispatch({
+        type: 'LOADING_COMMENTS'
+    });
+    postCommentToBlogByBlogId(postId, comment)
+        .then(getCommentsByPostId(postId)
+            .then(comments => {
+                dispatch({
+                    type: 'LOAD_COMMENTS',
+                    comments: comments
+                })
+            }));
+};
+
+const getBlogPost = (dispatch, id) => {
+    getPostById(id)
+        .then(post => {
+            dispatch({
+                type: 'LOAD_POST',
+                post
+            })
+        });
+};
+
+const getComments = (dispatch, id) => {
+    getCommentsByPostId(id)
+        .then(comments => {
+            dispatch({
+                type: 'LOAD_COMMENTS',
+                comments
+            })
+        })
+};
+
+
+/*** Container ***/
 
 class BlogPostPageContainer extends React.Component {
 
     constructor(props){
         super(props);
-        props.dispatch({
-           type: 'INITIAL_LOAD'
-        });
+        this.props.initialLoad();
         this.state = {
-            currentComment: {
-                id: 1, author: "", date: "", content: ""
-            }
+            currentComment: {id: 1, author: "", date: "", content: ""}
         }
     }
 
-
     componentDidMount()  {
-        getPostById(this.props.id)
-            .then(post => {
-                this.props.dispatch({
-                    type: 'LOAD_POST',
-                    post
-                })
-            });
+        this.props.getBlogPost(this.props.id);
+        this.props.getComments(this.props.id);
 
-        getCommentsByPostId(this.props.id)
-            .then(comments => {
-                console.log(comments);
-                this.props.dispatch({
-                    type: 'LOAD_COMMENTS',
-                    comments
-                })
-            })
     };
 
     handleInputChange = (evt) => {
@@ -121,32 +147,18 @@ class BlogPostPageContainer extends React.Component {
 
     };
 
-    postComment = (postId, comment) => {
-        this.props.dispatch({
-            type: 'LOADING_COMMENTS'
-        });
-        postCommentToBlogByBlogId(postId, comment)
-            .then(getCommentsByPostId(this.props.id)
-                .then(comments => {
-                    this.props.dispatch({
-                        type: 'LOAD_COMMENTS',
-                        comments: comments
-                    })
-                }));
+    handleCommentSubmit = (evt) => {
+        evt.preventDefault();
+        this.props.postComment(this.props.id, this.state.currentComment)
     };
 
 
     render() {
         let postContent = this.props.loading.post ? <LoadingSpinner/> : <BlogPost post={this.props.post}/>;
         let commentContent = this.props.loading.comments ? <LoadingSpinner/> : <CommentList comments={this.props.comments}/>;
-        let commentForm = this.props.loading.comments
-                            ? <div></div>
-                            : <CommentForm handleInputChange={this.handleInputChange}
-                                currentComment={this.state.currentComment}
-                                onSubmit={(evt) => {
-                                    evt.preventDefault();
-                                    this.postComment(this.props.id, this.state.currentComment);
-                                }}/>;
+        let commentForm = !this.props.loading.comments && <CommentForm handleInputChange={this.handleInputChange}
+                                                            currentComment={this.state.currentComment}
+                                                            onSubmit={evt => this.handleCommentSubmit(evt)}/>;
         return (
             <div>
                 <section className="blogPost row padTop-96 padBottom-96 pageWidth textCenter">
@@ -162,6 +174,20 @@ class BlogPostPageContainer extends React.Component {
         )
     }
 }
+
+
+/*** Connect Functions ***/
+
+const mapDispatchToBlogPostProps = (dispatch) =>{
+    return {
+        initialLoad: () => dispatch({type: 'INITIAL_LOAD'}),
+        postComment: (postId, comment) => postComment(dispatch, postId, comment),
+        getBlogPost: (id) => getBlogPost(dispatch, id),
+        getComments: (id) => getComments(dispatch, id)
+    }
+};
+
+
 const mapStateToBlogPostProps = (state) => {
     return {
         post: state.post,
@@ -170,22 +196,23 @@ const mapStateToBlogPostProps = (state) => {
     }
 };
 
-
-const BlogPostPage = connect(
+const BlogPostApp = connect(
     mapStateToBlogPostProps,
-    null
+    mapDispatchToBlogPostProps
 )(BlogPostPageContainer);
 
 
-class BlogApp extends React.Component {
+/*** Page ***/
+
+class BlogPostPage extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <BlogPostPage id={this.props.id}/>
+                <BlogPostApp id={this.props.id}/>
             </Provider>
         )
     }
 }
 
 
-export {BlogPostPage, BlogApp}
+export {BlogPostPage}
