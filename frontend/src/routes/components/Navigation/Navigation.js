@@ -37,6 +37,7 @@ class LoggedInDropDown extends React.Component {
                 <a href="#" className="navLink" onClick={this.toggleDropdown}>{this.props.user.username} <i className="fa fa-angle-down fa-1x"/></a>
                 <div className={classes}>
                     <ul>
+                        <li><a href="#" onClick={this.handleLogout}>Account</a></li>
                         <li><a href="#" onClick={this.handleLogout}>Log out</a></li>
                     </ul>
                 </div>
