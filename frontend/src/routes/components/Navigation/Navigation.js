@@ -37,6 +37,7 @@ class LoggedInDropDown extends React.Component {
                 <a href="#" className="navLink" onClick={this.toggleDropdown}>{this.props.user.username} <i className="fa fa-angle-down fa-1x"/></a>
                 <div className={classes}>
                     <ul>
+                        <li><a href="#" onClick={this.handleLogout}>Account</a></li>
                         <li><a href="#" onClick={this.handleLogout}>Log out</a></li>
                     </ul>
                 </div>
@@ -81,7 +82,6 @@ class Navigation extends React.Component {
                     <section className="navLinks">
                         <Link to="/" className="navLink">SLM</Link>
                         <NavLink to="/features" className="navLink" activeClassName="active">Features</NavLink>
-                        <NavLink to="/pricing" className="navLink" activeClassName="active">Pricing</NavLink>
                         <NavLink to="/blog" className="navLink" activeClassName="active">Blog</NavLink>
                     </section>
                     {this.buildActions()}
