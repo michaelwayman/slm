@@ -9,12 +9,6 @@ export {
     createUser, CREATE_USER_FAIL_RESPONSE, CREATE_USER_SUCCESS_RESPONSE,
 } from './user.jsx';
 
-
-export {
-    getAccountDetails, GET_ACCOUNT_DETAILS_SUCCESS_RESPONSE,
-    updateAccount, UPDATE_ACCOUNT_SUCCESS_RESPONSE,
-} from './account.jsx';
-
 export {
     contactSubmit
 } from './contact.jsx';

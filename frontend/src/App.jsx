@@ -13,8 +13,6 @@ import {
     FeaturesPage,
     HomePage,
     LoginPage,
-    PricingPage,
-
 } from './routes/index.jsx'
 
 import {Registration} from './routes/Registration/index.jsx'
@@ -48,7 +46,6 @@ class App extends React.Component {
                     {/*<Route path="/blog" exact={true} component={BlogListPage}/>*/}
                     {/*<Route path="/blog/:postId" component={({match}) => (<BlogPostPage id={match.params.postId}/>)}/>   /!* Could get blog before rendering*!/*/}
                     <Route path='/register' component={Registration}/>
-                    <Route path='/pricing' component={PricingPage} />
                     <Route path='/contact' component={ContactPage} />
                     <Route path='/features' component={FeaturesPage} />
                     <Route path='/login' component={LoginPage} />
