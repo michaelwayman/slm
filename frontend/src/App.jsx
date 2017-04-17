@@ -13,6 +13,7 @@ import {
     FeaturesPage,
     HomePage,
     LoginPage,
+    ProductDetailPage
 } from './routes/index.jsx'
 
 import {Registration} from './routes/Registration/index.jsx'
@@ -43,12 +44,11 @@ class App extends React.Component {
                     <Route path="/" exact component={HomePage}/>
                     <Route path='/about' component={AboutPage} />
                     <Route path="/blog" component={BlogPages} />
-                    {/*<Route path="/blog" exact={true} component={BlogListPage}/>*/}
-                    {/*<Route path="/blog/:postId" component={({match}) => (<BlogPostPage id={match.params.postId}/>)}/>   /!* Could get blog before rendering*!/*/}
                     <Route path='/register' component={Registration}/>
                     <Route path='/contact' component={ContactPage} />
                     <Route path='/features' component={FeaturesPage} />
                     <Route path='/login' component={LoginPage} />
+                    <Route path='/details' component={ProductDetailPage} />
                 </div>
                 </BrowserRouter>
             </Provider>

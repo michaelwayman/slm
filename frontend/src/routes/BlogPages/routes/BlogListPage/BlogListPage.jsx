@@ -81,6 +81,7 @@ class BlogList extends React.Component {
 
 }
 
+
 /*** Connect Functions ***/
 
 const mapStateToBlogListProps = (state) => {

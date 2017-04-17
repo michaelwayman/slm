@@ -2,7 +2,7 @@ const BASE_BLOG_URL = '/api/blog/';
 const BLOG_POST_URL = BASE_BLOG_URL + 'posts';
 const BLOG_COMMENT_URL = BASE_BLOG_URL + 'comments';
 
-let defaultJSONHeaders = new Headers({
+const defaultJSONHeaders = new Headers({
     'Content-Type': 'application/json'
 });
 

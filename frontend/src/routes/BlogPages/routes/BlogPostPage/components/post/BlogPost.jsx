@@ -12,7 +12,7 @@ const BlogPost = (props) => (
     <div className="blogPost">
         <div className="row">
             <h1 className="col-md-4">{props.post.title}</h1>
-            <h2 className="col-md-4">{props.post.author}</h2>
+            <h4 className="col-md-4">{props.post.author}</h4>
         </div>
         <p>{props.post.content}</p>
         <p>{dateToDayMonthYear(props.post.posted_date)}</p>

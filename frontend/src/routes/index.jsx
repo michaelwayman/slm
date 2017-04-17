@@ -6,6 +6,7 @@ export {AboutPage} from './AboutPage/index.jsx';
 import ContactPage from './ContactPage/index.jsx'
 export {FeaturesPage} from './FeaturesPage/index.jsx'
 export {Registration} from './Registration/index.jsx'
+export {ProductDetailPage} from './ProductDetail/index.jsx'
 
 export {
     LoginPage,

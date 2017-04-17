@@ -93,7 +93,10 @@ const postComment = (dispatch, postId, comment) => {
                     type: 'LOAD_COMMENTS',
                     comments: comments
                 })
-            }));
+            }))
+        .catch(err => {
+            console.log(err);
+        })
 };
 
 const getBlogPost = (dispatch, id) => {
@@ -164,7 +167,7 @@ class BlogPostPageContainer extends React.Component {
                 <section className="blogPost row padTop-96 padBottom-96 pageWidth textCenter">
                     {postContent}
                 </section>
-                <section className="blogCommentForm row padTop-96 pageWidth textCenter">
+                <section className="blogCommentForm row padTop-96 padBottom-96 pageWidth textCenter">
                     {commentForm}
                 </section>
                 <section className="commentList row padTop-96 padBottom-96 pageWidth textCenter">
@@ -178,23 +181,19 @@ class BlogPostPageContainer extends React.Component {
 
 /*** Connect Functions ***/
 
-const mapDispatchToBlogPostProps = (dispatch) =>{
-    return {
-        initialLoad: () => dispatch({type: 'INITIAL_LOAD'}),
-        postComment: (postId, comment) => postComment(dispatch, postId, comment),
-        getBlogPost: (id) => getBlogPost(dispatch, id),
-        getComments: (id) => getComments(dispatch, id)
-    }
-};
+const mapDispatchToBlogPostProps = (dispatch) =>({
+    initialLoad: () => dispatch({type: 'INITIAL_LOAD'}),
+    postComment: (postId, comment) => postComment(dispatch, postId, comment),
+    getBlogPost: (id) => getBlogPost(dispatch, id),
+    getComments: (id) => getComments(dispatch, id)
+});
 
 
-const mapStateToBlogPostProps = (state) => {
-    return {
-        post: state.post,
-        comments: state.comments,
-        loading: state.loading
-    }
-};
+const mapStateToBlogPostProps = (state) =>({
+    post: state.post,
+    comments: state.comments,
+    loading: state.loading
+});
 
 const BlogPostApp = connect(
     mapStateToBlogPostProps,
