@@ -9,6 +9,12 @@ class Solution(models.Model):
     category = models.ForeignKey('Category')
     description = models.TextField()
 
+    def __str__(self):
+        return str(self.name)
+
 
 class Category(models.Model):
     name = models.CharField(max_length=56)
+
+    def __str__(self):
+        return str(self.name)

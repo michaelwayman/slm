@@ -13,6 +13,7 @@ import {
     FeaturesPage,
     HomePage,
     LoginPage,
+    Discover,
 } from './routes/index.jsx'
 
 import {Registration} from './routes/Registration/index.jsx'
@@ -49,6 +50,7 @@ class App extends React.Component {
                     <Route path='/contact' component={ContactPage} />
                     <Route path='/features' component={FeaturesPage} />
                     <Route path='/login' component={LoginPage} />
+                    <Route path='/discover' component={Discover} />
                 </div>
                 </BrowserRouter>
             </Provider>

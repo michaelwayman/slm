@@ -25,7 +25,10 @@ SECRET_KEY = 'g)bg$0jtjmq7qrwbd_@nd-)e2eq#yb8p(&ja_!!fv$qv1lr@=u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backend']
+ALLOWED_HOSTS = [
+    'backend',
+    'localhost',
+]
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'contact.apps.ContactConfig',
     'blog.apps.BlogConfig',
+    'solutions.apps.SolutionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
-    'middleware.slow_down.SlowDownMiddleware'
+    # 'middleware.slow_down.SlowDownMiddleware'
 ]
 
 ROOT_URLCONF = 'slm.urls'

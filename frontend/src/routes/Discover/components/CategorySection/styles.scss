@@ -1,0 +1,29 @@
+.categorySection {
+
+  overflow-x: hidden;
+
+  h3 {
+    font-size: 32px;
+  }
+
+  .items {
+    width: 5000px;
+  }
+
+  .item {
+
+    display: inline-block;
+    width: 200px;
+
+    .img {
+      height: 150px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+
+    }
+  }
+
+}
