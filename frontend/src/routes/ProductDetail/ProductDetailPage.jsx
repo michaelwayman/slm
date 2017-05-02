@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { ProductDetailHeading, ScreenShotSelector } from './components/index.jsx'
+import { ProductDetailHeading, ScreenShotSelector, RatingsContainer } from './components/index.jsx'
 import { Navigation, Footer } from '../components/index.jsx'
-
 import './styles.css'
 
 
@@ -83,6 +82,7 @@ class ProductDetailPage extends Component {
                     {/*<Ratings/>*/}
                 </div>
                 <CurrentRating stars={4}/>
+                <RatingsContainer/>
                 <Footer/>
             </div>
         )

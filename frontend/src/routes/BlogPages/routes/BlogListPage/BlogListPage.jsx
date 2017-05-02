@@ -4,11 +4,7 @@ import { Provider, connect } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { getBlogPosts } from '../../lib/blogService.jsx'
 import logger from 'redux-logger'
-
-// TODO: Find a better place for this, and style it cool
-const LoadingSpinner = () => (
-    <i className="fa fa-spinner fa-spin fa-5x"></i>
-);
+import {LoadingSpinner} from '../../../components/Loading/index.jsx'
 
 
 /*** Reducers ***/
@@ -84,12 +80,12 @@ class BlogList extends React.Component {
 
 /*** Connect Functions ***/
 
-const mapStateToBlogListProps = (state) => {
-    return {
-        blogs: state.blogs,
-        loading: state.loading
-    }
-};
+const mapStateToBlogListProps = (state) => ({
+    blogs: state.blogs,
+    loading: state.loading
+});
+
+
 const mapDispatchToBlogListProps = (dispatch) => {
     return {
         loadBlogs: () => {
