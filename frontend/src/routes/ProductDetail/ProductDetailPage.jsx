@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ProductDetailHeading, ScreenShotSelector, RatingsContainer } from './components/index.jsx'
 import { Navigation, Footer } from '../components/index.jsx'
+import {StarRating} from '../components/Rating/index.jsx'
 import './styles.css'
 
 
@@ -19,11 +20,11 @@ const InfoBox = ({category, updated, version, price, languages}) => (
             <h5>Category</h5>
             <p>Lorem ipsum dolor sit amet</p>
         </div>
-        <div className="infoSection padTop-16">
+        <div className="infoSection padTop-8">
             <h5>Updated</h5>
             <p>Lorem ipsum dolor sit amet, consectetur </p>
         </div>
-        <div className="infoSection padTop-16 ">
+        <div className="infoSection padTop-8">
             <h5>Version</h5>
             <p>Lorem ipsum dolor sit elit</p>
         </div>
@@ -39,29 +40,17 @@ const InfoBox = ({category, updated, version, price, languages}) => (
 );
 
 
-class CurrentRating extends React.Component {
-    render() {
-        let emptyStars = [];
-        let filledStars = [];
-        const filled = this.props.stars;
-        const empty = 5 - this.props.stars;
-
-        for(let i = 0; i < filled; i++) {
-            filledStars.push(<i className="fa fa-star"></i>)
-        }
-
-        for(let i = 0; i < empty; i++) {
-            emptyStars.push(<i className="fa fa-star-o"></i>)
-        }
-
-        return (
-            <div>
-                {filledStars} {emptyStars}
-            </div>
-        )
-
-    }
-}
+const ProductContent = () => (
+    <div className="productDetailPage pageWidth">
+        <div className="mainContent">
+            <ProductDetailHeading/>
+            <ScreenShotSelector/>
+        </div>
+        <SideBar>
+            <InfoBox/>
+        </SideBar>
+    </div>
+);
 
 
 class ProductDetailPage extends Component {
@@ -70,18 +59,7 @@ class ProductDetailPage extends Component {
         return (
             <div>
                 <Navigation/>
-                <div className="productDetailPage pageWidth">
-                    <div className="mainContent">
-                        <ProductDetailHeading/>
-                        <ScreenShotSelector/>
-                    </div>
-                    <SideBar>
-                        <InfoBox/>
-                    </SideBar>
-
-                    {/*<Ratings/>*/}
-                </div>
-                <CurrentRating stars={4}/>
+                <ProductContent/>
                 <RatingsContainer/>
                 <Footer/>
             </div>
